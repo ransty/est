@@ -20,8 +20,55 @@ bottom: -0.25em;
 </style>
 </head>
 <script type="text/javascript">
+window.onload = function() {
+	    $("#vo2Max_value").val(0);
+	   changeMean();
+	};
+	$(document).ready(function() {
+        var divHeight = $('.contain').height();
+        $('.side_menu').css('height', divHeight+'px');
 
-</script> 
+        $(".v_person").fadeTo( "slow" , 1, function() {});
+
+    });
+	$(document).on('click','#anaerobic_strength, #anaerobic_capacity, #aerobic_fitness', function(){
+		$(".sub_menu").hide();
+		$(this).next(".sub_menu").toggle().animate({left: '274px', opacity:'1'});
+	});
+	$(document).on('click','#VO2max', function(){
+		$(".inner_sub_menu").slideUp();
+		$(this).next(".inner_sub_menu").toggle().animate({left: '274px', opacity:'1'});
+	});
+	$(document).on('click','.menu_btn', function(){
+		$(this).toggleClass("active");
+		$(".drop_main").toggle().animate({left: '76px', opacity:'1'});
+	});
+	$(document).on('click','.info_icon_btn', function(){
+		$(".info_block").toggle();
+		$(".overlay").toggle();
+	});
+	$(document).on('click','.close', function(){
+		$(".info_block").toggle();
+		$(".overlay").toggle();
+	});
+	$(document).on('click','.print_icon_toggle_btn', function(){
+		$(".print_icon_toggle").toggle();
+	});
+	$(document).on('click','.vitual_btn', function(){
+    $("#vpvirticaljumpgen").attr("action", "http://115.112.118.252/VirtualEST/index.php/Fitness/FitnessVirtualpersonGeneration");
+        $("#vpvirticaljumpgen").submit();
+	$(".v_person").fadeTo( "slow" , 1, function() {});
+	});
+	$(document).on('click','.discart', function(){
+		$(".v_person").fadeTo( "slow" , 0, function() {});
+	});
+	$(document).on('click','.v_btn a', function(){
+		$(this).text(function(i, v){
+               return v === 'Click To Know' ? 'Hide Detail' : 'Click To Know'
+        });
+		$(".v_detail").slideToggle();
+	});
+</script>
 <body>
 
 
@@ -40,9 +87,9 @@ bottom: -0.25em;
         	<h3>Fitness Testing</h3>
             <p>MAOD Laboratory</p>
         </div>
-        
-        
-		
+
+
+
         <div class="orng_box_btn f_right">
         	<a href="#" onclick="window.print(); return false;"><img src="http://115.112.118.252/VirtualEST//assets/images/print_green.jpg"></a>
         </div>
@@ -50,34 +97,33 @@ bottom: -0.25em;
         	<a href="#" class="info_icon_btn"><img src="http://115.112.118.252/VirtualEST//assets/images/info_green.jpg"></a>
         </div>
         <div class="orng_box_btn f_right">
-        	<form name="vpform" id="vpvirticaljumpgen" method="post"> 
+        	<form name="vpform" id="vpvirticaljumpgen" method="post">
         	<a href="#" class="vitual_btn"><img src="http://115.112.118.252/VirtualEST//assets/images/virtual_icon.png" style="margin-top: 12px;"></a>
              <input type="hidden" name="vptype" value="vjump_vp">
-             </form> 
+             </form>
         </div>
-		
+
 		<div class="vitual_div">
-			
+
 		</div>
-		
+
         <div class="overlay">&nbsp;</div>
         <div class="info_block">
         	<div class="info_block_head">Maximal anerobic oxygen deficit</div>
             <p> </p>
              <div class="info_block_foot">
              	<a href="#" class="lite_btn grey_btn f_right close">Close</a>
-             </div>                
-        </div> 
-    
+             </div>
+        </div>
+
     </div>
 </div>
 
 <div class="wrapper">
-<!-- Form begins -->    
+<!-- Form begins -->
 <form action="http://115.112.118.252/VirtualEST/index.php/Fitness/saveClientVerticalJumpInfo" method="post" accept-charset="utf-8" id="myform" name="myform"><div style="display:none">
 <input type="hidden" name="userid" value="1903" />
-</div> 	 
-	 
+</div>
     <div class="contain">
     	<div class="side_menu">
         	<a href="#" class="menu_btn"></a>
@@ -89,6 +135,7 @@ bottom: -0.25em;
                         <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/flight_time">flight:contact time</a></li>
                         <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/peak_power">peak power [W]</a></li>
                         <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/strength">strength tests</a></li>
+
                     </ul>
                 </li>
                 <li><a href="#" id="anaerobic_capacity"><img src="http://115.112.118.252/VirtualEST//assets/images/icon_capacity.png"> Anaerobic capacity</a>
@@ -106,89 +153,37 @@ bottom: -0.25em;
                             </ul>
                         </li>
                         <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/lactate_threshold">lactate threshold</a></li>
+                        <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/maod">maod test</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
         </div>
-    	
-    	<!--Start right -->         
+
+
+
+    	<!--Start right -->
         <div class="right-section right-section_new">
         <div class="right-head">MAOD Laboratory</div>
-        
-        <div class="field_row" style="border:0;"> 
-            <div class="graph">
-                <ul class="verticle_lines">                        
-                    <li><span id="class1">~90</span></li> 
-                    <li><span id="class2">~86</span></li> 
-                    <li><span id="class3">~82</span></li> 
-                    <li><span id="class4">~81</span></li> 
-                    <li><span id="class5">~78</span></li> 
-                    <li><span id="class6">~76</span></li> 
-                    <li><span id="class7">~75</span></li> 
-                    <li><span id="class8">~72</span></li> 
-                    <li><span id="class9">~70</span></li> 
-                    <li><span id="class10">~68</span></li> 
-                    <li><span id="class11">~66</span></li> 
-                    <li><span id="class12">~63</span></li> 
-                    <li><span id="class13">~60</span></li> 
-                    <li><span id="class14">~57</span></li>
-                    <li><span id="class15">~53</span></li>                        
-                    <li>
-                      <div class="graph_dashed_line"><div class="graph_dashed_line">&nbsp;</div> <span id="meanVal" class="graph_dash_text">46</span> <span>average</span>                            
-                        <div class="custom1"><div id="plot16_1" class="blue_dot" style="display:none;left:10px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom4"><div id="score16_1" class="red_dot" style="display:none;left:10px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom1"><div id="plot16_2" class="blue_dot" style="display:none; left:50px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom4"><div id="score16_2" class="red_dot" style="display:none; left:50px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom1"><div id="plot16_3" class="blue_dot" style="display:none; left:80px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom4"><div id="score16_3" class="red_dot" style="display:none; left:80px;" ><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom2"><div id="plot17" class="blue_dot" style="display:none; left:10px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom5"><div id="score17" class="red_dot" style="display:none; left:10px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_8" class="blue_dot" style="display:none; left:20px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_8" class="red_dot" style="display:none; left:20px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_7" class="blue_dot" style="display:none; left:-8px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_7" class="red_dot"  style="display:none; left:-8px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_6" class="blue_dot" style="display:none; left:-20px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_6" class="red_dot"  style="display:none; left:-20px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_5" class="blue_dot" style="display:none; left:-50px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_5" class="red_dot"  style="display:none; left:-50px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_4" class="blue_dot" style="display:none; left:-80px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_4" class="red_dot"  style="display:none; left:-80px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_3" class="blue_dot" style="display:none; left:-110px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_3" class="red_dot" style="display:none; left:-110px;" ><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_2" class="blue_dot" style="display:none; left:-150px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_2" class="red_dot" style="display:none; left:-150px;" ><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                        <div class="custom3"><div id="plot18_1" class="blue_dot" style="display:none; left:-195px;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div></div><div class="custom6"><div id="score18_1" class="red_dot" style="display:none; left:-195px;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></div>
-                      </div>
-                    </li>                        
+        	<div class="field_row verticle_field_row">
+                <div class="field_24">
+                    <ul id="workload">
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
+                        <li><input /></li>
                     </ul>
-                
-                    <ul class="bottom_values">
-                                                <li><span>1 in 10,000,000</span> <div id="plot1" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score1" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 1,000,000</span> <div id="plot2" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score2" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 100,000</span> <div id="plot3" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score3" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 50,000</span> <div id="plot4" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score4" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 10,000</span> <div id="plot5" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score5" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 5,000</span> <div id="plot6" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score6" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 2,500</span> <div id="plot7" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score7" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 1,000</span> <div id="plot8" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score8" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 500</span> <div id="plot9" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score9" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 200</span> <div id="plot10" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score10" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 100</span> <div id="plot11" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score11" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 50</span> <div id="plot12" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score12" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 20</span> <div id="plot13" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score13" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 10</span> <div id="plot14" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score14" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                                <li><span>1 in 5</span> <div id="plot15" class="blue_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//blue_dot.png" alt=""/></div><div id="score15" class="red_dot" style="display:none;"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div></li>
-                                            </ul>
-                        
-                        <div class="score_box">
-                        <div class="score_text">
-                                your<br/>score<br>
-                                <div style="margin-top: 10px;">Sport<br/>mean<br/><div id="sportMeanVal"></div></div> 
-                        </div>                            
-                        <!--<div class="red_dot"><img src="http://115.112.118.252/VirtualEST//assets/images//red_dot.png" alt=""/></div>-->
-                       </div>
-                   
-                <div class="graph_pulse_box">
-                    <span>frequency</span>
-                    <img src="http://115.112.118.252/VirtualEST//assets/images//pulse.png" alt=""/> 
-                </div>
+                    <ul id="vo2">
+                        <li><input /></li>
+                    </ul>
             </div>
         </div>
-       </div> 
+            </div>
     </div>
-	
 	</form><!-- Form ends -->
-	
+
 </div>
 </body>
 </html>
