@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
@@ -16,6 +16,9 @@ vertical-align: baseline;
 }
 sub {
 bottom: -0.25em;
+}
+.small-input {
+	width: 50%;
 }
 </style>
 </head>
@@ -162,34 +165,55 @@ window.onload = function() {
 
 
 
+                
+            
+
     	<!--Start right -->
         <div class="right-section right-section_new">
         <div class="right-head">MAOD Laboratory</div>
-            <h3 style="text-align: center;">Graph values to be plotted</h3>
+	<div id="input-vals">	
+		<label for="value"><strong>Body Mass</strong></label>
+		<input id="value" class="cus-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+	</div>
+	<br>	
             <br>
-        	<div class="field_row">
-                <div class="field_24" style="text-align: center;">
-                    <ul id="workload" style="display: inline-block;">
-                        Workload
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
+		<div>
+                    <ul class="field_75" id="workload" style="display: inline-block;">
+                        <label>Workload</label>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li> 
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+			<li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
                     </ul>
-                    <ul id="vo2" style="display: inline-block;">
-                        VO2 Max (L/min)
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
-                        <li><input /></li>
+                    <ul id="vo2" class="field_75" style="display: inline-block;">
+                        <label>VO2 Max (L/min)</label>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+			<li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
+                        <li><input class="small-input" /></li>
                     </ul>
+		<br>
+		<br>
+		<buton class="lite_btn btn_green">Plot Graph</buton>
+		</div>
             </div>
-                <br>
-                <div style="text-align: center;"><buton class="lite_btn btn_green">Plot Graph</buton></div>
+                
         </div>
             </div>
     </div>
