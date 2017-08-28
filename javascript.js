@@ -5,11 +5,11 @@ var y = [];
 var ny = 0;
 var nx = 0;
 var count;
-var sumX = 0;
-var sumY = 0;
+var sumX = 0.0;
+var sumY = 0.0;
 var sumX2;
 var sumXY;
-var slope;
+var slope = 0.0;
 var intercept;
 var xFinal = [];
 var yFinal = [];
@@ -42,6 +42,8 @@ function grabInput() {
   sumY = sum(y);
   sumX2 = multiplySum(x, x);
   sumXY = multiplySum(x, y);
+  slope = (x.length * sumXY - sumX * sumY) / (x.length * sumX2 - sumX * sumX);
+  intercept = (sumY - slope * sumX) / x.length;
 }
 
 function multiplySum(x, y) {
@@ -55,7 +57,7 @@ function multiplySum(x, y) {
 function sum(input) {
   var sum = 0;
   for (var i = 0; i < input.length; i++) {
-    sum += parseInt(input[i].value);
+    sum += parseFloat(input[i]);
   }
   return sum;
 }
