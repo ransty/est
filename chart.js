@@ -236,6 +236,9 @@ function InitChart() {
            .text(function(d) {
              return "X-Intercept: " + intercept + ", Slope: " + slope;
            });
+
+           // now lets write all important data to p
+           $("#datagrab").text("Y-Intercept: " + intercept + ", Slope: " + slope + ", R^2: TODO, Equation: Y = " + slope + "*X + " + intercept);
 }
 
 /*
