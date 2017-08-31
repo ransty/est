@@ -16,9 +16,8 @@ var xFinal = [];
 var yFinal = [];
 var lineY1;
 var lineY2;
-var lineX1 = 9999999;
-var lineX2 = 0;
-var maxY = 0;
+var lineX1;
+var lineX;
 var dataset = [];
 
 /*
@@ -110,6 +109,9 @@ function grabInput() {
   for (var i = 0; i <  x.length; i++) {
      dataset.push([x[i], y[i]]);
   }
+  // y = mx + c
+  // y - c / m
+  console.log((-intercept)/ slope);
   InitChart();
 }
 
@@ -158,8 +160,6 @@ function InitChart() {
     'x': lineX2,
     'y': lineY2
   }];
-
-  console.log(lineData[0].x, lineData[0].y);
 
   var data = dataset;
 
@@ -236,11 +236,11 @@ function InitChart() {
            .attr('fill', 'none')
            .append("svg:title") // tooltip
            .text(function(d) {
-             return "X-Intercept: " + intercept + ", Slope: " + slope;
+             return "Y-Intercept: " + intercept + ", Slope: " + slope;
            });
 
            // now lets write all important data to p
-           $("#datagrab").text("Y-Intercept: " + intercept + ", Slope: " + slope + ", R^2: TODO, Equation: Y = " + slope + "*X + " + intercept);
+           $("#datagrab").text("Y-Intercept: " + intercept + ", X-Intercept: " + ((-intercept)/slope) + ", Slope: " + slope + ", R^2: TODO, Equation: Y = " + slope + "*X + " + intercept);
 }
 
 /*
