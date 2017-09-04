@@ -256,10 +256,11 @@ function correlation() {
   var r1 = count * sumXY - (sumX * sumY);
   var r2 = Math.sqrt((count * sumX2 - Math.pow(sumX, 2))*(count * sumY2 - Math.pow(sumY, 2)));
   result = Math.pow((r1 / r2), 2);
-  result =  Math.round(result * 1000) / 1000;
+  result = Math.round(result * 1000) / 1000;
   if (result < 0.8) {
     alert("Please review the data you entered, it seems a bit off.");
   }
+  return result;
 }
 
 /*
