@@ -82,6 +82,7 @@ function getMinimumValue(list) {
 * Button call from HTML, starts getting data from form
 */
 function grabInput() {
+  clearGraph();
   getWorkloadValues();
   getV02MaxValues();
   // get the sum of x
@@ -241,7 +242,7 @@ function InitChart() {
            });
 
            // now lets write all important data to p
-           $("#datagrab").text("Y-Intercept: " + intercept + ", X-Intercept: " + ((-intercept)/slope) + ", Slope: " + slope + ", R^2: " + correlation() + ", Equation: Y = " + slope + "*X + " + intercept + ", N = " + count);
+           $("#datagrab").text("Y-Intercept: " + Math.round(intercept * 1000) / 1000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 1000) / 1000 + ", Slope: " + Math.round(slope * 1000) / 1000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "*X + " + Math.round(intercept * 1000) / 1000 + ", N = " + count);
 }
 
 // N = number of pairs of scores
@@ -254,9 +255,10 @@ function correlation() {
   var result = 0;
   var r1 = count * sumXY - (sumX * sumY);
   var r2 = Math.sqrt((count * sumX2 - Math.pow(sumX, 2))*(count * sumY2 - Math.pow(sumY, 2)));
-  result = Math.floor(Math.pow((r1 / r2), 2));
+  result = Math.pow((r1 / r2), 2);
+  result =  Math.round(result * 1000) / 1000;
   if (result < 0.8) {
-    alert("Are you sure the dataset is correct?");
+    alert("Please review the data you entered, it seems a bit off.");
   }
 }
 
