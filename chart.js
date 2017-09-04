@@ -243,14 +243,14 @@ function InitChart() {
 
            // now lets write all important data to p
            $("#datagrab").text("Y-Intercept: " + Math.round(intercept * 1000) / 1000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 1000) / 1000 + ", Slope: " + Math.round(slope * 1000) / 1000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "*X + " + Math.round(intercept * 1000) / 1000 + ", N = " + count);
+           $("#dataswap").text("Workload");
+           $("#datawrap").text("V02 Max (L/Min)");
 }
 
-// N = number of pairs of scores
-// sum(xy) = sum of the products of paired scores
-// sum(x) = sum of x scores
-// sum(y) = sum of y scores
-// multiplySum(x, x) = sum of squared x scores
-// multiplySum(y, y) = sum of squared y scores
+/*
+* Calculates the R Squared value of the line
+* (Coefficient of Expression)
+*/
 function correlation() {
   var result = 0;
   var r1 = count * sumXY - (sumX * sumY);
