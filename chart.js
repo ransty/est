@@ -8,6 +8,7 @@ var nx = 0;
 var count;
 var sumX = 0.0;
 var sumY = 0.0;
+var sumY2;
 var sumX2;
 var sumXY;
 var slope = 0.0;
@@ -91,6 +92,8 @@ function grabInput() {
   sumX2 = multiplySum(x, x);
   // get the multiplication sum of x[i] * y[i]
   sumXY = multiplySum(x, y);
+  // sum of y * y
+  sumY2 = multiplySum(y, y);
   // calculate the slope of the regression line
   slope = (x.length * sumXY - sumX * sumY) / (x.length * sumX2 - sumX * sumX);
   // calculate the x intercept for the regression line
@@ -109,9 +112,7 @@ function grabInput() {
   for (var i = 0; i <  x.length; i++) {
      dataset.push([x[i], y[i]]);
   }
-  // y = mx + c
-  // y - c / m
-  console.log((-intercept)/ slope);
+  count = (x.length == y.length) ? x.length : alert("X and Y list does not match!");
   InitChart();
 }
 
@@ -240,7 +241,23 @@ function InitChart() {
            });
 
            // now lets write all important data to p
-           $("#datagrab").text("Y-Intercept: " + intercept + ", X-Intercept: " + ((-intercept)/slope) + ", Slope: " + slope + ", R^2: TODO, Equation: Y = " + slope + "*X + " + intercept);
+           $("#datagrab").text("Y-Intercept: " + intercept + ", X-Intercept: " + ((-intercept)/slope) + ", Slope: " + slope + ", R^2: " + correlation() + ", Equation: Y = " + slope + "*X + " + intercept + ", N = " + count);
+}
+
+// N = number of pairs of scores
+// sum(xy) = sum of the products of paired scores
+// sum(x) = sum of x scores
+// sum(y) = sum of y scores
+// multiplySum(x, x) = sum of squared x scores
+// multiplySum(y, y) = sum of squared y scores
+function correlation() {
+  var result = 0;
+  var r1 = count * sumXY - (sumX * sumY);
+  var r2 = Math.sqrt((count * sumX2 - Math.pow(sumX, 2))*(count * sumY2 - Math.pow(sumY, 2)));
+  result = Math.floor(Math.pow((r1 / r2), 2));
+  if (result < 0.8) {
+    alert("Are you sure the dataset is correct?");
+  }
 }
 
 /*
@@ -249,4 +266,26 @@ function InitChart() {
 */
 function clearGraph() {
   $("#visualisation").empty();
+  // clear all variables
+  xInput = 0;
+  yInput = 0;
+  x = [];
+  y = [];
+  ny = 0;
+  nx = 0;
+  count = 0;
+  sumX = 0.0;
+  sumY = 0.0;
+  sumY2 = 0;
+  sumX2 = 0;
+  sumXY = 0;
+  slope = 0.0;
+  intercept;
+  xFinal = [];
+  yFinal = [];
+  lineY1 = 0;
+  lineY2 = 0;
+  lineX1 = 0;
+  lineX = 0;
+  dataset = [];
 }
