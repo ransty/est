@@ -1,0 +1,1011 @@
+@charset "utf-8";
+@import url("../webfonts/fonts.css");
+*{ margin:0; padding:0;}
+strong
+{
+font-weight:900 !important;
+}
+.small{font-size:14px;text-dacoration:none;}
+img {width:100%; height:auto;}
+
+/*---------------------// Index page Start //-----------------------*/
+.wrapper{ max-width:1000px; margin:0 auto; }
+.logo {height: 100px;
+width: 930px;
+padding-top: 50px;
+padding-left: 36px;
+overflow: none; 
+}
+
+.mid {height:635px; min-height: 635px; width: 100%;background-color: #FFF;	background-image: -webkit-gradient(	linear,right bottom,left bottom,color-stop(0, #ECECEC),color-stop(0.5, #f6f6f6),
+	color-stop(1, #ECECEC));
+	background-image: -o-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -moz-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -webkit-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -ms-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: linear-gradient(to left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);}
+
+
+/*-------------------Mid buttons----------------*/
+.buttons {height: auto;width: 760px;margin-left: 133px;	padding-top: 70px;overflow:auto;}
+
+ul{list-style-type:none;}
+/* change background color to green Amit */
+
+ul .last{margin-right:0px;}
+
+/*-------------------Bottom Buttons----------------*/
+/* change background color to green Amit */
+.bottom-btn{width:420px; height:50px;margin-left:404px; margin-top:30px; float:none;}
+a .start-btn{
+	float: left;
+	height: 38px;
+	width: 180px;
+	background-color: #c60003;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	color: #FFF;
+	text-decoration: none;
+	padding-top: 8px;
+}
+
+a .quit-btn{float: right;height: 38px;width: 180px;background-color: #137bb1;font-size: 24px;font-weight: bold;text-align: center;vertical-align: middle;color: #FFF;text-decoration: none;padding-top: 8px;}
+
+
+/*-------------------Footer----------------*/
+.footer{width:100%; border-top:1px solid #e6e6e6; font-size: 12px;color: #31475a; display:inline-block; line-height: 40px; margin-top:50px;}
+
+
+/*---------------------// Index page End //-----------------------*/
+
+
+
+
+/*---------------------// Clients details page Start //-----------------------*/
+.wrapper-client{ width:1000px; margin:0 auto;height:auto;}
+.logo2 {
+	height: 100px;
+	width: 710px;
+	padding-top: 50px;
+	padding-left: 290px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #666;
+	overflow: none;
+}
+
+.mid2 {
+	height: auto;
+	width: 100%;
+	float: none;
+	background-image: -webkit-gradient(	linear,right bottom,left bottom,color-stop(0, #ECECEC),color-stop(0.5, #f6f6f6),
+	color-stop(1, #ECECEC));
+	background-image: -o-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -moz-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -webkit-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -ms-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: linear-gradient(to left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	overflow: auto;
+	padding-bottom: 20px;
+}
+
+  .mid2_left{width:42%;float:left;background:#eee;padding:4%;height:820px;overflow:auto;  }
+  .mid2_left h3{font-size: 23px;color:#bbb;}
+  .mid2_left p{font-size: 21px;color:#bbb;margin-top:20px;line-height:30px;}
+ .mid2_right{width:48%;float:right;}
+.case-form {
+	float: none;
+	height: auto;
+	width: 1000px;
+}
+
+#inputs input
+{
+    background: #ffffff; 
+    margin: 0 0 15px 20px;
+}
+
+#inputs input:focus
+{
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-color: #137bb1;
+	border-right-color: #137bb1;
+	border-bottom-color: #137bb1;
+	border-left-color: #137bb1;
+}
+input:focus
+{
+    border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-color: #137bb1;
+	border-right-color: #137bb1;
+	border-bottom-color: #137bb1;
+	border-left-color: #137bb1;
+}
+select:focus
+{
+    border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-color: #137bb1;
+	border-right-color: #137bb1;
+	border-bottom-color: #137bb1;
+	border-left-color: #137bb1;
+}
+textarea:focus
+{
+    border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-color: #137bb1;
+	border-right-color: #137bb1;
+	border-bottom-color: #137bb1;
+	border-left-color: #137bb1;
+}
+
+.gender{width:20px !important;margin:0px !important;}
+.form-head{ width:100%;font-size:30px; color:#c60003; margin:0px 0 0 0; text-align:center;  padding:20px 0 10px 0; font-weight:bold;}
+
+.form-base { height:auto; width:380px; margin:0px auto 0 auto!important; padding:0px; }
+
+.lsection{ float:left; width:369px;}
+.lsection span{ display:block; margin:0 0 30px 0; font-size:17px; color:#000}
+.lsection span p{
+	width: 126px;
+	font-size: 19px;
+	color: #c60003;
+	float: left;
+	vertical-align: middle;
+	margin-top:7px;
+}
+
+.lsection input[type="text"]{float:none !important;}
+
+.gen{
+	margin-top:0px !important;
+}
+.gen-rel{
+	margin-top:-2px !important; width:160px !important;
+}
+.gen-age{
+	margin-top:-2px !important; width:100px !important;
+}
+.gen-width{width:300px !important;margin-left:35px !important;}
+.at-age{float:left !important;}
+
+.smoke-width{width:500px !important;margin-left:0px !important;}
+.smoke-text{margin-top:-2px !important; width:300px !important;}
+
+input[type="text"],input[type="number"], select, textarea{ background-color:#ffffff !important ; height:40px; font-size:14px !important; padding:0 3%; margin:0; border:1px solid #ccc; width: 93.8%;-webkit-appearance: none;}
+input[type="text"]:focus, select:focus, textarea:focus{border-color:#31475a; outline:none;}
+select{width:100%;}
+textarea{height:100px; resize:none;padding: 10px 2%; width: 95.8%;}
+input[type="number"]{border-radius:0;} 
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  color: #292321;
+  font-size: 14px;
+}
+
+input[type="radio"] + label span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: -1px 0 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+input[type="radio"] + label span {
+      box-shadow: inset 0 0 0 1px #31475a; position:relative;
+}
+
+input[type="radio"]:checked + label span:before{height: 12px; width: 12px; background: #31475a; border-radius: 60%; content: ''; position: absolute; margin-top: 4px; margin-left: 4px; left:0;}
+
+input[type="radio"] + label span,
+input[type="radio"]:checked + label span {
+  -webkit-transition: background-color 0.4s linear;
+  -o-transition: background-color 0.4s linear;
+  -moz-transition: background-color 0.4s linear;
+  transition: background-color 0.4s linear;
+}
+
+ 
+ #validate{
+	text-align: center;
+	padding-bottom: 25px;
+}
+#validate p {
+    color: #F00;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin: 10px 0;
+}
+#clientInfo{margin-top:5px;}
+	
+/*---------------------// Clients details page End //-----------------------*/
+
+.login-cont input[type="submit"]{
+	background-image: url(../images/edit-btn.png) !important;
+	background-repeat: no-repeat !important;
+	margin-top: -37px !important;
+	height: 38px;
+	float: right !important;
+	padding: 3px!important;
+	border: 1px solid #CCC;
+	margin-left: 27px !important;
+	display: block;
+	width: 38px;
+	margin-bottom: 0px;
+	margin-right: -29px !important;
+	background-color: rgba(173, 174, 176, 1) !important;
+	background-position: center center !important;
+}
+
+
+
+/*---------------------// Medical history page Start //-----------------------*/
+
+.mid3 {
+	height: auto;
+	width: 100%;
+	float: none;
+	margin:0px;
+}
+
+.mid-medi{
+	height: 685px;
+	width: 100%;
+	float: none;
+	margin:0px;
+	background-image: -webkit-gradient(	linear,right bottom,left bottom,color-stop(0, #ECECEC),color-stop(0.5, #f6f6f6),
+	color-stop(1, #ECECEC));
+	background-image: -o-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -moz-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -webkit-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -ms-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: linear-gradient(to left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+}
+
+
+/*----Login value Start--*/
+.login-cont{height: 110px;
+width: 100%;
+background-color: #e1e1e1;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: #666;
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #666;}
+
+.section{ float:left; width:730px;margin-left:145px;}
+.section span{ width:360px;height:33px;display:block; margin:35px 0 0px 0px; font-size:17px; color:#000;float: left;}
+.section span b{
+	width: 90px;
+	font-size: 19px;
+	color: #c60003;
+	float: left;
+	vertical-align: middle;
+	margin-top:7px;
+}
+/*------Login value End-----*/
+
+.contain{height: auto; width:100%; float:left;}
+
+.btn{width: 100%;}
+
+.img-box{height:71px;width:71px;float: left;margin: 0px 10px 0px 10px;display: block;}
+.btn p{
+	padding-top: 11px;
+	height: 60px;
+	width: auto;}
+
+.btn a{
+	height: 71px;
+	width: 100%;
+	margin-top: 10px;
+	font-family:;
+	font-size: 19px;
+	font-weight: none;
+	color: #137bb1;
+	text-decoration: none;
+	display:block;
+	}
+.btn a:hover{
+	background-image: url(../images/btn-select-bg.png);
+	background-repeat: no-repeat;
+	}
+	
+/*	.btn-select{
+	background-image: url(../images/btn-select-bg.png);
+	background-repeat: no-repeat;
+	}*/
+	
+/*.btn :hover{
+	background-image: url(../images/btn-select-bg.png);
+	background-repeat: no-repeat;}*/
+.btn :hover p{
+	font-size: 19px;
+	font-weight: none;
+	color: #fff;
+	text-decoration: none;
+	}
+	
+.btn-select a{
+	font-size: 19px;
+	font-weight: none;
+	color: #fff;
+	text-decoration: none;
+}
+
+/*----Left End--*/
+.mid-phsi{
+	height: 685px;
+	width: 100%;
+	float: none;
+	margin:0px;
+	background-image: -webkit-gradient(	linear,right bottom,left bottom,color-stop(0, #ECECEC),color-stop(0.5, #f6f6f6),
+	color-stop(1, #ECECEC));
+	background-image: -o-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -moz-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -webkit-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -ms-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: linear-gradient(to left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+}
+
+/*----Right Start--*/
+.right{width: 70%;
+height: auto;
+float: right;
+padding: 0 0 10px 0;}
+
+
+.right-risk{
+width: 775px;
+float: right;
+padding: 0 0 10px 10px;
+}
+.right-head{
+	color: #0e151a;	font-size: 24px;
+	margin: 30px 0;
+}
+.right-section{ float:right; width:100%; margin-left:20px;height:100%; padding-right:5px;}
+.right-section_new{width:895px;}
+.right-section-medi{height:740px;}
+
+.right-section span{margin-top:10px; margin-left: 2px; font-size: 14px; color: #1d2a35;float: left;}
+.right-section span ol{
+	width: 600px;
+	font-size: 17px;
+	color: #c60003;
+	float: left;
+	vertical-align: middle;
+	margin-top:15px;
+	margin-right:7px;
+	margin-left:20px;
+}
+.right-section span p{
+	width: 600px;
+	font-size: 18px;
+	color: #c60003;
+	float: left;
+	margin-top:15px;
+}
+
+.right-section span p strong{
+	font-weight:900;
+}
+
+
+.right-section span .new{
+	width: 400px;
+	font-size: 17px;
+	color: #c60003;
+	float: left;
+	margin-top:0px !important;
+}
+
+/*----Right End--*/
+
+.client_submit{margin-left:580px !important; margin-top:10px !important;}
+.footer-top{margin-top:70px !important;}
+
+#no{font-size: 16px;}
+#yes{font-size: 16px;}
+
+/*---------------------// Medical history page End //-----------------------*/
+
+
+
+
+
+
+/*---------------------// Physical Activity page Start //-----------------------*/
+.physi-text-age{ width:70px !important;
+margin-top: -8px !important;}
+.physi-text{ width:70px !important;}
+/*---------------------// Physical Activity page End //-----------------------*/
+
+
+
+
+
+
+/*---------------------// Risk factor page Start //-----------------------*/
+.risk-mid{	height: 790px;
+	width: auto;
+	float: none;
+	margin:0px;
+	background-image: -webkit-gradient(	linear,right bottom,left bottom,color-stop(0, #ECECEC),color-stop(0.5, #f6f6f6),
+	color-stop(1, #ECECEC));
+	background-image: -o-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -moz-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -webkit-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: -ms-linear-gradient(left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);
+	background-image: linear-gradient(to left, #ECECEC 0%, #f6f6f6 50%, #ECECEC 100%);}
+.risk-contain{height:790px !important;}
+.measured-cont{width:760px;margin-left:0px;height:auto;}
+.measured-left{width:340px;height:auto;float:left;}
+.measured-left span{ width:340px;height:auto;display:block; margin-top:13px;margin-left:10px;font-size:17px; color:#000;float: left;}
+.measured-left span p{
+	width: 190px;
+	font-size: 19px;
+	color: #c60003;
+	float: left;
+	margin-top:15px;
+	padding-top:6px;
+}
+
+.measured-right{width:320px;height:auto;float:left;margin-left:20px;}
+.measured-right span{ width:315px;height:auto;display:block; margin-top:13px;margin-left:10px;font-size:17px; color:#000;float: left;}
+.measured-right span p{
+	width: 200px;
+	font-size: 19px;
+	color: #c60003;
+	float: left;
+	margin-top:0px;
+	padding-top:6px;
+}
+.risk-footer{margin-top:84px !important;}
+
+/*---------------------// Risk factor page End //-----------------------*/
+
+
+
+
+
+
+/*---------------------// Body Compsition page Start //-----------------------*/
+.comp-mid-new{height:695px !important;}
+.comp-contain-new{height:540px !important;}
+.comp-cont{width:760px;margin-left:0px;height:140px;margin-top:10px;}
+
+.compo-text{width:60px !important}
+
+.comp-left{width:265px;height:auto;float:left;}
+.comp-left span{ width:255px;height:auto;display:block; margin-top:13px;margin-left:10px;font-size:17px; color:#000;float: left;}
+.comp-left span p{
+	width: 152px;
+	font-size: 17px;
+	color: #c60003;
+	float: left;
+	margin-top:15px;
+	padding-top:7px;
+}
+
+.comp-mid{width:200px;height:auto;float:left;}
+.comp-mid span{ width:190px;height:auto;display:block; margin-top:13px;margin-left:10px;font-size:17px; color:#000;float: left;}
+.comp-mid span p{
+	width: 84px;
+	font-size: 17px;
+	color: #c60003;
+	float: left;
+	margin-top:15px;
+	padding-top:7px;
+}
+.value{width:25px;float:left;margin-left:2px;margin-top:10px;color:#666;}
+.value-physi{color:#666;}
+.value-risk{width:25px;float:left;margin-left:3px;margin-top:5px;color:#666;}
+
+
+.comp-right{width:270px;height:auto;float:left;margin-top:70px;}
+.comp-right span{ width:260px;height:auto;display:block; margin-top:13px;margin-left:10px;font-size:17px; color:#000;float: left;}
+.comp-right span p{
+	width: 173px;
+	font-size: 17px;
+	color: #c60003;
+	float: left;
+	margin-top:15px;
+	padding-top:7px;
+}
+
+
+.comp-cont2{width:470px;height:100px;margin-top:40px;margin-left:265px;}
+.topmargin{margin-top:25px !important;}
+.topmargin-third{margin-top:50px !important;}
+
+.margin-left{margin-left:60px !important;}
+.margin-right{margin-left:150px !important;}
+
+/*---------------------// Body Compsition page End //-----------------------*/
+
+
+/*---------------------// mediations page Start //-----------------------*/
+.medi-contain-new{float: left;}
+.mid-medi{float: left;}
+.select-margin{margin-top:30px !important;margin-left:0px !important; width:300px !important;}
+.list{
+	width: 100%;
+	height: auto;
+	overflow:auto;
+}
+
+.list-margin{
+	margin-bottom:15px;
+}
+
+.list span{ width:350px;height:auto;display:block; margin-top:25px;margin-left:10px;font-size:17px; color:#000;float: left;}
+	
+.list span p{	width: 350px;font-size: 18px;color: #c60003;float: left;margin-top:15px;}
+
+.list textarea{ background-color:#ffffff !important ;margin:0px 0 0px 0; height:100px; width:730px; padding:0px 6px 0px; font-size:18px !important; color:#909090; display:block;}
+
+
+.selected select{background-color:#ffffff !important ;margin:0px !important; height:100px !important; width:350px; padding:0px  !important; font-size:18px !important; color:#909090; display:block;border: 1px solid #ccc;}
+
+.selected ul{background-color:#ffffff; height:174px; width:100%; font-size:15px; color:#808080; display:block;border: 1px solid #ccc;overflow-y: auto; border-radius:4px;}
+.selected ul li{padding: 8px 10px; border-bottom:1px solid #e6e6e6;}
+.selected ul li:hover{background:#f2f2f2;}
+.selected ul li:last-child{border-bottom:0;}
+.btnDelrb, .btnDel{	background: #137bb1 !important;
+	height: 25px;
+	width: 100px  !important;
+	border: none;
+	display: block;
+	cursor: pointer;
+	margin: 5px !important;
+	float: left;
+	margin-left: 0px;
+	font-size: 16px;
+	text-color: #FFF;
+	color: #FFF;}
+ 
+.selected-content{width:335px;height:auto;font-size: 19px;color: #137bb1;padding:5px;padding-left:10px;background-color:#fff;overflow:auto;}
+.list .selected a{
+	text-decoration: none;
+	color: #333;
+	font-size: 18px;
+	font-weight: normal;
+}
+a .selected-value{width:334px;height:27px;font-size: 18px;padding:5px;padding-left:10px;background-color:#EEE;text-dacoration: none;border: 1px #CDCDCD solid;}
+
+.footer-medic{margin-top:30px !important;}
+
+.clonedInput input[type="text"], .clonedInput1 input[type="text"]{
+	background-image: url(../images/option_bg.png) !important;
+	margin-top:2px !important;
+	margin:0px;
+	height: 30px;
+	width: 212px !important;
+	font-size: 18px !important;
+	color: #666;
+	display: block;
+	margin-left: 5px !important;
+	padding: 0px 0px 3px 9px;
+	float: left;
+	background-repeat: no-repeat;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+
+.clonedInput input[type="button"], .clonedInput1 input[type="button"]{
+	background-image: url(../images/option_close.png) !important;
+	margin-top:2px !important;
+	margin:0px;
+	height: 30px;
+	width: 29px;
+	font-size: 18px !important;
+	color: #909090;
+	display: block;
+	padding: 0px;
+	float:left !important;
+	background-repeat: no-repeat;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+/*---------------------// mediations page End //-----------------------*/
+
+
+/*---------------------// Screening page Start //-----------------------*/
+.screen-contain{padding-bottom:25px !important;height: 800px !important; }
+.screen-para-proceed{font-size: 14px; color: #137bb1; margin-bottom: 20px;}
+
+.screen-data2{width:100%; height:auto; font-size: 18px;color: #137bb1;text-dacoration: none;margin-top:20px;margin-left:20px;background-color:#ddd;padding:20px;overflow:auto;}
+
+.screen-footer{margin-top:0px !important;}
+/*---------------------// Screening page End //-----------------------*/
+
+.screen-left{width:440px; height:auto; font-size: 18px;color: #137bb1;text-dacoration: none;float:left;}
+
+/*.screen-right, .screen-right1{width: 200px;height: 150px;background-color: none;font-size: 18px;color: #137bb1;text-dacoration: none;float: left;background-image: url(../images/risk-score-bg.png);background-repeat: no-repeat;}*/
+.screen-right{width: 200px;height: 150px;background-color: none;font-size: 18px;color: #137bb1;text-dacoration: none;float: left;margin-top: 30px;background-image: url(../images/risk-score-bg.png);background-repeat: no-repeat;}
+.screen-right1{width: 200px;height: 150px;background-color: none;font-size: 18px;color: #137bb1;text-dacoration: none;float: left;margin-top: 60px;background-image: url(../images/risk-score-bg.png);background-repeat: no-repeat;}
+
+.screen-content-box{width: 50%; float: left; border-bottom: 1px solid #ccc; min-height: 60px; margin-bottom: 10px;}
+.screen-head{font-size:9px; color:#b3b3b3; text-transform:uppercase;}
+.screen-head span{margin: 0; float: none; text-transform: none; font-size: 9px; color: #b3b3b3;}
+.screen-value{font-size: 20px; color: #1d2a35;}
+
+.riskfactor{width:300px;height:25px;font-size: 15px;color: #137bb1;text-dacoration: none;margin-top:0px;margin-left:0px;float:left;}
+.riskfactor-value{width:300px;height:25px;font-size: 15px;color: #137bb1;text-dacoration: none;margin-left:15px;float:none;margin-left:15px;}
+
+.red-text{color: #C00 !important;}
+.green-text{color: #0C6 !important;}
+.white-text{color: #FFF !important;}
+.orange-text{color: #fa8d00 !important;}
+
+.main-btn{width: 320px; float: none; margin-left: 510px;}
+
+.fixed {position: fixed !important; top:0 !important; z-index: 99;}
+
+.left{width: 270px; height: auto; background: #f2f2f2; float: left; box-shadow: 3px 0 5px rgba(0, 0, 0, 0.22); position: absolute; bottom: 0; top: 125px;}
+.disc{width:950px;display:none;height:30px;}
+.disc-head{font-size: 16px !important;color: #000;text-align:left;}
+.tp_mrgn{margin-top: 20px; font-weight:bold;}
+.disc-text{font-size: 12px !important;color: #000;text-align:left;text-dacoration:none; margin:7px 0;}
+
+.main-sign{width:950px; font-size:16px !important;color: #000;text-align:left;float:left;display:none;}
+.tester-sign{float:left;}
+.date-sign{float:right;}
+   .sign{heigth:80px;}
+   .bottom{height:100px;}
+ .new-test{width:130px !important;float:left !important;} 
+ .space{height:200px;display:none;}
+ .comp-right .gen{text-align:right;}
+.page2{display:none;margin-top:200px;}
+
+ .section .edit_btn{display: block !important;}
+#extra, #extra2{background-image:url(http://115.112.118.252/healthscreen/assets/images/anatomical.png); height:470px;width:55%;background-repeat:no-repeat;background-size:80% 100%;margin-left:300px;margin-top:10px;padding-left: -100px;}
+/*--------------@ media for print start--------------*/
+@media screen
+{
+.printOnly {display: none;}
+.medical_top{display:none;}
+.page2{display:none;}
+}
+
+@media print{
+    
+* {-webkit-print-color-adjust:exact;}
+.left{display: none  !important;}
+.right{width:1000px !important;float: left;margin-top:15px !important;}
+.displayOnly {display: none !important;}		
+.logo,.login-cont{display: none !important;}
+.section{height:50px;}
+.section span{margin-top:10px !important;}	
+
+.screen-data{width:1050px !important; height:500px !important; font-size: 25px;color: #000000;text-dacoration: none;margin-top:30px; margin-bottom: 0px; margin-left:0px!important;background-color:#ddd;padding:20px; padding-bottom: 0px;}	
+.screen-para{width:1100px !important;height:30px !important;}	
+.screen-left{width:600px  !important; height:400px !important;font-size: 25px;color: #137bb1;text-dacoration: none;float:left;padding:10px;}
+.riskfactor{width:200px;height:25px;font-size: 15px;color:#333;text-dacoration: none;float:left;}
+	input[type="button"]{display:none;}
+	input[type="submit"]{display:none;}
+.form_new{display:none;}
+.form_print{display:none;}
+				
+.screen-right{width: 300px !important;height: 120px;background-color: none;font-size: 18px;color: #137bb1;text-dacoration: none;float: left;margin-top: 30px;background-image: url(../images/risk-score-bg-print.png);background-repeat: no-repeat;}
+.screen-right1{width: 300px;height: 120px;background-color: none;font-size: 18px;color: #137bb1;text-dacoration: none;float: left;margin-top: 50px;background-image: url(../images/risk-score-bg-print.png);background-repeat: no-repeat;margin-left:10px;}
+
+.disc{display:inline-block; width:1000px; height: auto;}
+			
+.medical_top{height:40px;display:block;}
+.right .disc{width:100% !important;height:auto !important;}
+.right .disc-head{font-size: 17px !important;color: #000;float: left;}
+.right .disc-text{font-size: 15px !important;color: #000;width:1000px !important; float:left; margin-bottom:20px;}
+
+.disc2{width:1200px !important;height:auto !important;}
+
+.bottom{position:absolute;top:1100px;}
+.sign{margin-top:50px !important;height:50px !important;}
+.main-sign{display:block;margin-top:10px;}
+#edit-btn{display:none}
+.mid3{height: auto !important; padding-bottom:100px;background:none;}
+
+.contain{height: auto !important;padding-bottom:10px !important;}
+.space{display:block;}
+.section .edit_btn{display: none !important;}
+
+.page2{display:block;}
+ 
+ #extra2{width:38.2% !important;margin-left:350px;}
+ /*.extra{width:37% !important;}*/
+ 
+}
+
+		
+/*--------------@ media for print End---------------*/
+
+@media (max-width: 1024px) {
+.fixed {left:0px !important;}
+/*----welcome page----------
+ul li a {height: 110px;width: 110px;}
+.buttons {width: 640px;margin-left: 70px;}
+.bottom-btn {margin-left: 165px;}*/
+.mid {height: 580px;}
+
+.screen-data {width: 690px;}
+#logo{display:none;}
+
+.login-cont {height: 85px;}
+.section span {margin: 29px 0px 0px;}
+
+/*----welcome page----------*/
+.logo {height: 80px;padding-top: 30px;}
+.buttons {padding-top:35px;}
+.footer {margin-top:30px; text-indent:20px;}
+
+/*----Client details----------*/
+
+/*----physical activity----------*/
+.right-section textarea	{height:70px;}
+.right-section span p {margin-top:5px;}
+
+/*----risk factors----------*/
+.measured-left,.measured-right span {margin-top:9px;}
+
+/*----medication----------*/
+.selected {height:109px;margin-top:26px;}
+.selected-value {height: 70px;}
+.selected-value ul {height: 70px !important;}
+.list span {margin-top:10px;}
+.list span p {width: 360px;}
+
+.medi-contain-new textarea{height:45px;}
+
+/*-----------------screening----------*/
+.screen-contain {height: 630px !important;}
+.screen-para {margin-top: 7px;height:50px;width:700px;}
+.screen-content-box{height:16px;}
+.screen-data {height: 395px;width:728px;padding:0px !important;margin-top:40px !important;}
+.screen-right{margin-top:20px;background-image: url(../images/risk-score-bg.png);background-repeat: no-repeat;}
+.screen-left{height:370px !important;}
+
+#datetimepicker2{ display: none;}
+	.vie_table{display: none;}	
+	.virtual_container{right: 0 !important; top: auto !important; bottom: 100px;} 
+	.v_person{top: 140px !important; right: 80px !important;}
+}
+
+@media (max-width: 768px) {
+.wrapper {width:100% !important;}
+.logo { width: 700px; height:70px; padding-top: 30px;}
+#logo{display:block;}
+.logo img{margin:0px; height:67%;}
+.section {margin-left:30px;}
+.section input[type="text"] {width: 190px !important;}
+.section span {width: 329px !important;}
+
+/*----welcome page----------*/
+ul li a {height: 110px;width: 110px;}
+.buttons {width: 640px;margin-left: 70px;}
+.bottom-btn {margin-left: 282px;}
+.mid {height: 826px;}
+
+/*----Client details----------*/
+.mid2 {height:820px !important;}
+.form-head {width: 375px;}
+ .mid2_left{width:40%;height:775px;}
+  .mid2_right{width:50%;}
+
+/*----medical history---------*/
+.mid3 {width:100%;height: 740px;}
+.mid-phsi{height: 740px;}
+.right {width: 535px;}	
+.right-section{width:520px;}
+.right-section span ol{width: 380px;}
+.right-section span .new {width: 280px;}
+
+/*----physical activity----------*/
+.mid-medi {height: 1000px !important;}
+.right-section .phy ol{width: 360px;}
+
+/*----risk factors----------*/
+.right-risk {width: 520px;height: 600px;float: left;margin-left: 215px;}
+.right-section span p {width: 417px;}
+.gen-width {margin-left:0px !important;width:270px !important;}
+.gen-rel {width: 145px !important;}
+.at-age {width: 215px !important;margin-left:20px !important;}
+
+.measured-cont{width:540px;margin-left:0px;height:auto;}
+.measured-left{width:260px;}
+.measured-left span {width:270px !important;}
+.measured-left span p {width: 113px !important;}
+.gen-new {margin-top: -10px !important;}
+
+.measured-right { width: 240px;margin-left: 20px !important;}
+.measured-right span {width:230px !important;}
+.measured-right span p {width: 100px !important;}
+
+.risk-mid{height:810px !important;}
+.risk-contain{height:750px !important;}
+
+/*----body compsition----------*/
+.comp-mid-new {height: 740px !important;}
+.comp-cont {width: 520px;height:180px;}
+.comp-left {width: 180px;}
+/*.comp-left span {width: 210px !important;}*/
+.comp-left span {width: 187px !important;}
+.comp-left span p {width: 148px !important;}
+
+.comp-mid {width: 183px !important;}
+.comp-mid .spanmargin {margin-top: 40px !important;}
+.comp-mid span{width: 200px !important;}
+.comp-mid span p {width: 51px !important;}
+
+.margin-right {margin-left: 50px !important;}
+.margin-left { margin-left: 30px !important;}
+.comp-right { width: 156px;}
+.comp-right span {width: 130px !important;margin-left: 33px;}
+.comp-right span p {width: 122px !important;}
+
+.comp-cont2 {width: 349px !important;margin-left: 148px !important;}
+.comp-cont2 .comp-mid {width: 183px !important;}
+.comp-cont2 .comp-mid .spanmargin {margin-top: 40px !important;}
+.comp-cont2 .comp-mid span{width: 200px !important;}
+.comp-cont2 .comp-mid span p {width: 83px !important;}
+
+.comp-cont2 .comp-right { width: 156px;}
+.comp-cont2 .comp-right span {width: 130px !important;margin-left: 62px;}
+.comp-cont2 .comp-right span p {width: 120px !important;text-align: left;margin-left:5px;}
+.topmargin {margin-top: 0px !important;}
+.topmargin-third { margin-top: 24px !important;}
+
+/*----medication----------*/
+.screen-contain {height: 740px !important;}
+.list{height:220px;}
+.list select{width:350px;margin-left: 0px !important;margin-top: 30px;}
+.list-margin {margin-bottom: 0px;}
+.selected {margin-top: 12px;}
+.list span { margin-left: 20px;}
+.mid-medi {height: 870px !important;}
+.screen-para {width: 520px;}
+
+.screen-data {width: 490px;height: 430px;padding: 10px !important;margin-left:10px;margin-top:50px !important;}
+.screen-left {width: 320px;float: left !important;}
+.margin-family{height:37px !important}
+.screen-right {	width: 150px;height: 120px;float: left !important;margin-top: 50px !important;;margin-left: 12px !important;	background-image: url(../images/risk-score-bg-print.png);background-repeat: no-repeat;}
+.screen-right1{width: 150px;height: 120px;float: left !important;margin-top: 50px !important;;margin-left: 12px !important;	background-image: url(../images/risk-score-bg-print.png);background-repeat: no-repeat;}
+
+.score {height:80px  !important;margin-top: 0px !important;padding-top: -5px !important;color:#0c5a82; }
+.score-head{font-size: 19px; color:#0c5a82; margin-top:10px !important;}
+
+.selected ul{overflow-y: scroll;}
+#datetimepicker2{ display: none;}
+ #extra{width:72% !important;}
+}
+
+@media (min-width: 769px) and (max-width: 1024px)
+{
+ /*#extra{width:72%}*/
+}
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=date]::-webkit-outer-spin-button,
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+
+
+/*0-----------------alert---------------------------*/
+#CustomAlert {
+visibility: hidden;
+position: absolute;
+z-index: 999;
+top: 200px;
+left: 200px;
+width: 100px;
+height: 50px;
+border-style: solid;
+border-width: 5px;
+border-color:#CCC;
+cursor: default;
+filter: alpha(opacity=90);
+background-color:#eee;
+text-align: center;
+}
+#CustomAlertSampleokButton {
+background-color:rgb(218, 216, 216);
+color: #000000;
+font-size: 9pt;
+font-family: arial;
+width: 70px;
+height: 20px; 
+}
+#CustomAlertTitle {
+background-color: dimgray;
+font-family: arial;
+font-size: 9pt;
+color: #FFFFFF;
+font-weight: bold;
+}
+#CustomAlertMessage {
+font-family: arial;
+font-size: 11pt;
+color: #000000;
+font-weight: normal;
+padding: 18px;
+}
+/*--------------------------------*/
+
+
+#confirmBox
+{
+    display: none;
+    background-color: #fff;
+    border: 4px solid #726F6F;
+    position: fixed;
+    width:400px;
+    left: 50%;
+    margin-left: -200px;
+    padding:35px 8px 35px;
+    box-sizing: border-box;
+    text-align: center;
+	font-family:MYRIADPROREGULAR;
+	top: 50%;
+    margin-top: -80px;
+}
+#confirmBox .button {
+    background-color:#e56b44;
+    display: inline-block;
+    border-radius: 30px;
+    padding:10px 15px;
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+	margin:10px 5px 0;
+	font-family:MYRIADPROREGULAR;
+	color:#FFF;
+	font-size: 15px;
+}
+
+#confirmBox .message
+{
+    text-align: center;
+    margin-bottom: 10px;
+	margin-top: 5px;
+	font-family:MYRIADPROREGULAR;
+	color:#000;    font-size: 15px;
+}
+
+#datetimepicker2{ display: block;}
