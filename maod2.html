@@ -201,77 +201,7 @@
 
 
     	<!--Start right -->
-            <div id="screen1" style="display: inline" class="right-section right-section_new">
-                <div class="right-head">MAOD Laboratory</div>
-                <div id="input-vals">
-                    <label for="value"><strong>Body Mass</strong></label>
-                    <input id="value" class="cus-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                    <input class="lite_btn btn_green" onclick="kk()" name="plot" value="N/A" type="button" />
-                    <script type="text/javascript">
-                        var lol = document.getElementById('wl1');
-                        function kk() {
-                            alert(lol.value);
-                        }
-                    </script>
-                </div>
-
-                <br>
-
-                <div class="field_row">
-                    <ul class="field_24" id="workload" style="position: absolute;">
-                        <label>Workload</label>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li></li>
-                    </ul>
-
-                    <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
-                        <label>VO2 Max</label>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                    </ul>
-                    <p id="datawrap" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
-
-                    <input class="lite_btn btn_green" onclick="grabInput()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 370px; width: 122px"/>
-                    <input class="lite_btn btn_green" onclick="clearGraph()" name="clear" value="Clear Graph" type="button" style="position: absolute; margin-top: 420px; width: 122px" />
-                    <input class="lite_btn btn_green" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-top: 470px; width: 122px" />
-
-                    <svg id="visualisation" width="700" height="500" style="margin-left: 160px"></svg>
-
-
-                    <p id="dataswap" style="text-align: center;"></p>
-
-
-                    <br>
-                    <hr>
-                    <h4 style="text-align: center;">DEBUG INFO</h4>
-                    <p id="datagrab" style="display: inline-block;"></p>
-
-                    </script><script src='https://d3js.org/d3.v3.min.js'></script>
-                </div>
-            </div>
-
-            <div id="screen2" name="screen2" style="display: none" class="right-section right-section_new">
+            <div class="right-section right-section_new">
                 <div class="right-head">MAOD Laboratory</div>
                 <div id="input-vals">
                     <label for="value"><strong>Time interval</strong></label>
@@ -324,7 +254,6 @@
 
                     <input class="lite_btn btn_green" onclick="grabInput()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 370px; width: 122px"/>
                     <input class="lite_btn btn_green" onclick="clearGraph()" name="clear" value="Clear Graph" type="button" style="position: absolute; margin-top: 420px; width: 122px" />
-                    <input class="lite_btn btn_green" id="move" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-top: 470px;" />
 
                     <svg id="visualisation" width="700" height="500" style="margin-left: 160px"></svg>
 

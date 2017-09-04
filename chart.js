@@ -21,6 +21,22 @@ var lineX1;
 var lineX;
 var dataset = [];
 
+function changeScreens() {
+  var screen1 = document.getElementById("screen1");
+  var screen2 = document.getElementById("screen2");
+  var button = document.getElementById("move");
+  if (screen1.style.display == 'inline') {
+    screen1.style.display = 'none';
+    screen2.style.display = 'inline';
+    button.value = "Previous Screen";
+  } else {
+    screen1.style.display = 'inline';
+    screen2.style.display = 'none';
+    button.value = "Next Screen"
+  }
+}
+
+
 /*
 * Takes Workload input from the HTML form
 */
@@ -283,7 +299,7 @@ function clearGraph() {
   sumX2 = 0;
   sumXY = 0;
   slope = 0.0;
-  intercept;
+  intercept = 0;
   xFinal = [];
   yFinal = [];
   lineY1 = 0;
@@ -291,4 +307,15 @@ function clearGraph() {
   lineX1 = 0;
   lineX = 0;
   dataset = [];
+  $("#dataswap").text("");
+  $("#datawrap").text("");
+}
+
+function kk(input) {
+  //alert(input);
+  var slots = 180 / input;
+  var x = document.getElementsByClassName("x");
+  for (var i = 0; i < input; i++ ) {
+    x[i].value = i * i + 20;
+  }
 }
