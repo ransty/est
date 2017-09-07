@@ -41,16 +41,36 @@ function changeScreens() {
 * Takes Workload input from the HTML form
 */
 function getWorkloadValues() {
+  var check = 0;
   xInput = document.getElementsByClassName("x");
-  x = copy(xInput);
+  for (var i = 0; i < xInput.length; i++) {
+    if (xInput[i].value == "") {
+      check++;
+    }
+  }
+  if (check == xInput.length ) {
+    throw new Error("No input values for X, nothing to be drawn.");
+  } else {
+      x = copy(xInput);
+  }
 }
 
 /*
-* Takes the V02 (L/min) values from the HTML form
+* Takes the V02 (L/min) values from the HTML form (Y axis)
 */
 function getV02MaxValues() {
+  var check = 0;
   yInput = document.getElementsByClassName("y");
-  y = copy(yInput);
+  for (var i = 0; i < yInput.length; i++ ) {
+    if (yInput[i].value == "") {
+      check++;
+    }
+  }
+  if (check == yInput.length) {
+    throw new Error("No input values for Y, nothing to be drawn.");
+  } else {
+    y = copy(yInput);
+  }
 }
 
 /*
@@ -97,11 +117,11 @@ function getMinimumValue(list) {
 /*
 * Button call from HTML, starts getting data from form
 */
-function grabInput() {
+function s1Input() {
   clearGraph();
   getWorkloadValues();
   getV02MaxValues();
-  // get the sum of x
+  // get the sum of xgrabInput
   sumX = sum(x);
   // get the sum of y
   sumY = sum(y);
@@ -133,6 +153,10 @@ function grabInput() {
   InitChart();
 }
 
+function s2Input() {
+  secondGraph();
+}
+
 /*
 * Calculates the x[i] * y[i] sum
 */
@@ -160,6 +184,65 @@ function sum(input) {
 */
 function regression(x) {
   return (slope * x) + intercept;
+}
+
+function secondGraph() {
+  var margin = {top: 20, right: 20, bottom: 20, left: 50}
+        , width = 700 - margin.left - margin.right
+        , height = 500 - margin.top - margin.bottom;
+
+  var margin = {top: 20, right: 20, bottom: 20, left: 50}
+        , width = 700 - margin.left - margin.right
+        , height = 500 - margin.top - margin.bottom;
+
+      var x = d3.scale.linear()
+                .domain([0, 5])
+                .range([ 0, width ]);
+
+      var y = d3.scale.linear()
+      	      .domain([0, 5])
+      	      .range([ height, 0 ]);;
+
+
+      var chart = d3.select('#visualisation2')
+  	.append('svg:svg')
+  	.attr('width', width + margin.right + margin.left)
+  	.attr('height', height + margin.top + margin.bottom)
+  	.attr('class', 'chart')
+
+      var main = chart.append('g')
+  	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+  	.attr('width', width)
+  	.attr('height', height)
+  	.attr('class', 'main')
+
+      // draw the x axis
+      var xAxis = d3.svg.axis()
+  	   .scale(x)
+  	    .orient('bottom');
+
+    main.append('g')
+  	.attr('transform', 'translate(0,' + height + ')')
+  	.attr('class', 'main axis date')
+  	.call(xAxis);
+
+      // draw the y axis
+      var yAxis = d3.svg.axis()
+  	.scale(y)
+  	.orient('left');
+
+      main.append('g')
+  	.attr('transform', 'translate(0,0)')
+  	.attr('class', 'main axis date')
+  	.call(yAxis);
+
+      var g = main.append("svg:g");
+
+
+           // now lets write all important data to p
+           $("#datagrab2").text("Y-Intercept: " + Math.round(intercept * 1000) / 1000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 1000) / 1000 + ", Slope: " + Math.round(slope * 1000) / 1000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "*X + " + Math.round(intercept * 1000) / 1000 + ", N = " + count);
+           $("#dataswap2").text("Workload");
+           $("#datawrap2").text("V02 Max (L/Min)");
 }
 
 /*
@@ -283,8 +366,9 @@ function correlation() {
 * Clears the graph (jQuery)
 * NOTE: jQuery must be loaded before this script for this to work
 */
-function clearGraph() {
-  $("#visualisation").empty();
+function clearGraph(string) {
+  console.log("#" + string + "");
+  $("#" + string + "").empty();
   // clear all variables
   xInput = 0;
   yInput = 0;
@@ -311,10 +395,10 @@ function clearGraph() {
   $("#datawrap").text("");
 }
 
+
 function kk(input) {
-  //alert(input);
   var slots = 180 / input;
-  var x = document.getElementsByClassName("x");
+  var x = document.getElementsByClassName("x2");
   for (var i = 0; i < input; i++ ) {
     x[i].value = i * i + 20;
   }
