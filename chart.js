@@ -36,40 +36,23 @@ function changeScreens() {
   }
 }
 
-
 /*
 * Takes Workload input from the HTML form
 */
-function getWorkloadValues() {
+function getList(htmlClass) {
   var check = 0;
-  xInput = document.getElementsByClassName("x");
-  for (var i = 0; i < xInput.length; i++) {
-    if (xInput[i].value == "") {
+  input = document.getElementsByClassName(htmlClass);
+  for (var i = 0; i < input.length; i++) {
+    if (input[i].value == "") {
       check++;
     }
   }
-  if (check == xInput.length ) {
+  if (check == input.length ) {
     throw new Error("No input values for X, nothing to be drawn.");
-  } else {
-      x = copy(xInput);
-  }
-}
-
-/*
-* Takes the V02 (L/min) values from the HTML form (Y axis)
-*/
-function getV02MaxValues() {
-  var check = 0;
-  yInput = document.getElementsByClassName("y");
-  for (var i = 0; i < yInput.length; i++ ) {
-    if (yInput[i].value == "") {
-      check++;
-    }
-  }
-  if (check == yInput.length) {
-    throw new Error("No input values for Y, nothing to be drawn.");
-  } else {
-    y = copy(yInput);
+  } else if ((htmlClass == 'x') || (htmlClass == 'x2')) {
+      x = copy(input);
+  } else if ((htmlClass == 'y') || (htmlClass == 'y2')) {
+      y = copy(input);
   }
 }
 
@@ -118,9 +101,9 @@ function getMinimumValue(list) {
 * Button call from HTML, starts getting data from form
 */
 function s1Input() {
-  clearGraph();
-  getWorkloadValues();
-  getV02MaxValues();
+  clearGraph('visualisation');
+  getList('x');
+  getList('y');
   // get the sum of xgrabInput
   sumX = sum(x);
   // get the sum of y
@@ -154,6 +137,7 @@ function s1Input() {
 }
 
 function s2Input() {
+  clearGraph('visualisation2');
   secondGraph();
 }
 
@@ -191,16 +175,12 @@ function secondGraph() {
         , width = 700 - margin.left - margin.right
         , height = 500 - margin.top - margin.bottom;
 
-  var margin = {top: 20, right: 20, bottom: 20, left: 50}
-        , width = 700 - margin.left - margin.right
-        , height = 500 - margin.top - margin.bottom;
-
       var x = d3.scale.linear()
-                .domain([0, 5])
+                .domain([0, 180])
                 .range([ 0, width ]);
 
       var y = d3.scale.linear()
-      	      .domain([0, 5])
+      	      .domain([0, 8])
       	      .range([ height, 0 ]);;
 
 
@@ -219,7 +199,9 @@ function secondGraph() {
       // draw the x axis
       var xAxis = d3.svg.axis()
   	   .scale(x)
-  	    .orient('bottom');
+  	    .orient('bottom')
+        .ticks(5)
+        .tickValues(d3.range(0, width, 15));
 
     main.append('g')
   	.attr('transform', 'translate(0,' + height + ')')
@@ -240,8 +222,8 @@ function secondGraph() {
 
 
            // now lets write all important data to p
-           $("#datagrab2").text("Y-Intercept: " + Math.round(intercept * 1000) / 1000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 1000) / 1000 + ", Slope: " + Math.round(slope * 1000) / 1000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "*X + " + Math.round(intercept * 1000) / 1000 + ", N = " + count);
-           $("#dataswap2").text("Workload");
+           $("#datagrab2").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "*X + " + Math.round(intercept * 10000) / 10000 + ", N = " + count);
+           $("#dataswap2").text("Time Interval (s)");
            $("#datawrap2").text("V02 Max (L/Min)");
 }
 
@@ -341,7 +323,7 @@ function InitChart() {
            });
 
            // now lets write all important data to p
-           $("#datagrab").text("Y-Intercept: " + Math.round(intercept * 1000) / 1000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 1000) / 1000 + ", Slope: " + Math.round(slope * 1000) / 1000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "*X + " + Math.round(intercept * 1000) / 1000 + ", N = " + count);
+           $("#datagrab").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "*X + " + Math.round(intercept * 10000) / 10000 + ", N = " + count);
            $("#dataswap").text("Workload");
            $("#datawrap").text("V02 Max (L/Min)");
 }
@@ -393,13 +375,21 @@ function clearGraph(string) {
   dataset = [];
   $("#dataswap").text("");
   $("#datawrap").text("");
+  $("#dataswap2").text("");
+  $("#datawrap2").text("");
 }
 
 
 function kk(input) {
-  var slots = 180 / input;
-  var x = document.getElementsByClassName("x2");
-  for (var i = 0; i < input; i++ ) {
-    x[i].value = i * i + 20;
+  var intervalList = document.getElementsByClassName('x2');
+  var yList = document.getElementsByClassName('y2');
+  input = parseInt(input);
+  var interval = 180 / input;
+  for (var index = 0; index <= interval; index++) {
+    intervalList[index].value = (index + 1) * input;
+  }
+  for (var i = interval; i <= intervalList.length; i++) {
+    intervalList[i].style.display = 'none';
+    yList[i].style.display = 'none';
   }
 }
