@@ -45,7 +45,10 @@
             stroke-dasharray: 1, 2;
         }
         .bar{
-            fill: FireBrick;
+            outline-style: solid;
+            outline-width: thin;
+            outline-color: antiquewhite;
+            fill: steelblue;
         }
         circle {
             fill: steelblue;
@@ -208,7 +211,7 @@
                 <div id="input-vals">
                     <label for="value"><strong>Body Mass</strong></label>
                     <input id="value" class="cus-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                    <input class="lite_btn btn_green" onclick="kk()" name="plot" value="N/A" type="button" />
+                    <input class="lite_btn btn_green" onclick="kk()" name="plot" value="Set" type="button" />
                     <label for="name"><strong>Name</strong></label>
                     <input id="name" class="cus-input" />
                     <input class="lite_btn btn_green" onclick="setName(document.getElementById('name').value)" name="plot" value="Set name" type="button" />
@@ -279,11 +282,12 @@
                 <div id="input-vals">
                     <label for="value"><strong>Time interval</strong></label>
                     <input id="testing" class="cus-input" style="width: 40px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                    <input class="lite_btn btn_green" onclick="kk(document.getElementById('testing').value)" name="plot" value="N/A" type="button" />
-                    <label for="red"><strong>Estimated V02max</strong></label>
-                    <input id="red" style="width: 40px;"/>
+                    <input class="lite_btn btn_green" onclick="kk(document.getElementById('testing').value)" name="plot" value="Set" type="button" />
+                    <label for="Vmax"><strong>Estimated V02max</strong></label>
+                    <input id="Vmax" style="width: 40px;"/>
                     <label for="supermaximal"><strong>Supermaximal workrate</strong></label>
                     <input id="supermaximal" style="width: 40px;" />
+                    <input class="lite_btn btn_green" onclick="reqSpeed()" name="plot" value="Calculate" type="button" />
                     <label for="reqworkload"><strong>Required Speed/Power</strong></label>
                     <input id="reqworkload" style="width: 40px" />
                 </div>
