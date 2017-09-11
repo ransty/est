@@ -393,3 +393,8 @@ function kk(input) {
     yList[i].style.display = 'none';
   }
 }
+
+function setName(name) {
+  var d = document.getElementById('officialname');
+  d.innerHTML = "Patient Name: " + name + "<input name='submitMedical' value='' title='edit client details' class='profile_edit_btn' type='submit' />";
+}

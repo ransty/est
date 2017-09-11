@@ -108,7 +108,7 @@
     <div class="header">
         <div class="wrapper">
             <div class="head_left">Exercise Science Toolkit</div>
-            <div class="head_right">Test User<input name="submitMedical" value="" title="edit client details" class="profile_edit_btn" type="submit" /></div>
+            <div id="officialname" class="head_right">Patient Name: Test User<input name="submitMedical" value="" title="edit client details" class="profile_edit_btn" type="submit" /></div>
         </div>
     </div>
 
@@ -209,7 +209,9 @@
                     <label for="value"><strong>Body Mass</strong></label>
                     <input id="value" class="cus-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <input class="lite_btn btn_green" onclick="kk()" name="plot" value="N/A" type="button" />
-
+                    <label for="name"><strong>Name</strong></label>
+                    <input id="name" class="cus-input" />
+                    <input class="lite_btn btn_green" onclick="setName(document.getElementById('name').value)" name="plot" value="Set name" type="button" />
                     <script type="text/javascript">
                         var lol = document.getElementById('wl1');
                         function kk() {
