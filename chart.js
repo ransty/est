@@ -20,6 +20,10 @@ var lineY2;
 var lineX1;
 var lineX;
 var dataset = [];
+var interval;
+var barwidth;
+var vo2max;
+var workrate;
 
 function changeScreens() {
   var screen1 = document.getElementById("screen1");
@@ -138,6 +142,13 @@ function s1Input() {
 
 function s2Input() {
   clearGraph('visualisation2');
+    getList('x2');
+    getList('y2');
+    
+    for (var i = 0; i <  x.length; i++) {
+        dataset[i] = {'x': x[i], 'y': y[i]};   
+   }
+ 
   secondGraph();
 }
 
@@ -218,8 +229,45 @@ function secondGraph() {
   	.attr('class', 'main axis date')
   	.call(yAxis);
 
-      var g = main.append("svg:g");
+        var g = main.append("svg:g");
+    
 
+    g.selectAll(".bar")
+    .data(dataset)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.x - barwidth); })
+      .attr("y", function(d) { return y(d.y); })
+      .attr("width", width/interval)
+      .attr("height", function(d) { return height - y(d.y); });
+    
+
+   
+    var lineData = [{
+    'x': 0,
+    'y': (vo2max*workrate/100)
+  }, {
+    'x': 180,
+    'y': (vo2max*workrate/100)
+  }];
+    
+    var lineFunc = d3.svg.line()
+           .x(function(d) {
+             return x(d.x);
+           })
+           .y(function(d) {
+             return y(d.y);
+           })
+           .interpolate('linear');
+              g.append('svg:path')
+           .attr('d', lineFunc(lineData))
+           .attr('stroke', 'red')
+           .attr('stroke-width', 2)
+           .attr('fill', 'none')
+           .append("svg:title") // tooltip
+           .text(function(d) {
+             return "Y-Intercept: " + intercept + ", Slope: " + slope;
+           });
 
            // now lets write all important data to p
            $("#datagrab2").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "*X + " + Math.round(intercept * 10000) / 10000 + ", N = " + count);
@@ -364,8 +412,8 @@ function clearGraph(string) {
   sumY2 = 0;
   sumX2 = 0;
   sumXY = 0;
-  slope = 0.0;
-  intercept = 0;
+  //slope = 0.0;
+  //intercept = 0;
   xFinal = [];
   yFinal = [];
   lineY1 = 0;
@@ -383,9 +431,11 @@ function clearGraph(string) {
 function kk(input) {
   var intervalList = document.getElementsByClassName('x2');
   var yList = document.getElementsByClassName('y2');
-  input = parseInt(input);
-  var interval = 180 / input;
+  barwidth = parseInt(input);
+  interval = 180 / barwidth;
   for (var index = 0; index <= interval; index++) {
+    intervalList[index].style.display = 'inline';
+    yList[index].style.display = 'inline';  
     intervalList[index].value = (index + 1) * input;
   }
   for (var i = interval; i <= intervalList.length; i++) {
@@ -397,4 +447,14 @@ function kk(input) {
 function setName(name) {
   var d = document.getElementById('officialname');
   d.innerHTML = "Patient Name: " + name + "<input name='submitMedical' value='' title='edit client details' class='profile_edit_btn' type='submit' />";
+}
+
+function reqSpeed(){    
+    vo2max = parseFloat(document.getElementById('Vmax').value);
+    workrate = parseFloat(document.getElementById('supermaximal').value);
+    reqwork = ((vo2max*workrate/100 - intercept) / slope);
+    
+    var d = document.getElementById('reqworkload');    
+    d.value = reqwork;
+    
 }
