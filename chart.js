@@ -24,6 +24,10 @@ var interval;
 var barwidth;
 var vo2max;
 var workrate;
+var oxygenRequired;
+var bodyMass;
+var maod = 0;
+
 
 function changeScreens() {
   var screen1 = document.getElementById("screen1");
@@ -138,6 +142,27 @@ function s1Input() {
   }
   count = (x.length == y.length) ? x.length : alert("X and Y list does not match!");
   InitChart();
+}
+
+
+function oxygenDeficit() {
+  //console.log("HELLO");
+  var overall = parseFloat(180 * (vo2max * workrate / 100));
+  console.log("Overall: " +  overall);
+  //console.log(overall);
+  var oxygenconsumed = 0;
+  for (var i = 0; i < y.length; i++) {
+    oxygenconsumed += barwidth * y[i];
+  }
+  console.log("Oxygen Consumed: " + oxygenconsumed);
+  //console.log(overall - oxygenconsumed);
+  //console.log("Interval " + interval);
+  var deficit = (overall - oxygenconsumed) / (60 / barwidth);
+  console.log("Deficit " + deficit);
+  var rval = deficit * 1000;
+  console.log("rval : " + rval);
+  // milliters 02 per kg
+  maod = rval / bodyMass;
 }
 
 function s2Input() {
@@ -274,11 +299,14 @@ function secondGraph() {
       .style("fill", "red")
       .text("Oxygen Required " + (vo2max*workrate/100) + " (L/min)");
 
+      oxygenDeficit();
 
            // now lets write all important data to p
-           $("#datagrab2").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "*X + " + Math.round(intercept * 10000) / 10000 + ", N = " + count);
+           $("#results").text("MOAD: " + maod);
            $("#dataswap2").text("Time Interval (s)");
            $("#datawrap2").text("V02 Max (L/Min)");
+
+           //console.log("Oxygen Deficit is: " + oxygenDeficit());
 }
 
 /*
@@ -376,10 +404,15 @@ function InitChart() {
              return "Y-Intercept: " + intercept + ", Slope: " + slope;
            });
 
+           //console.log("Oxygen Required: " + oxygenDeficit());
+           //console.log("Body mass oxygen: " + (oxygenRequired() * 1000 / bodyMass));
+
            // now lets write all important data to p
-           $("#datagrab").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "*X + " + Math.round(intercept * 10000) / 10000 + ", N = " + count);
+           $("#results").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "X + " + Math.round(intercept * 10000) / 10000 );
            $("#dataswap").text("Workload");
            $("#datawrap").text("V02 Max (L/Min)");
+
+
 }
 
 /*
@@ -453,6 +486,10 @@ function kk(input) {
 function setName(name) {
   var d = document.getElementById('officialname');
   d.innerHTML = "Patient Name: " + name + "<input name='submitMedical' value='' title='edit client details' class='profile_edit_btn' type='submit' />";
+}
+
+function setMass(mass) {
+  bodyMass = parseFloat(mass);
 }
 
 function reqSpeed(){
