@@ -28,6 +28,27 @@ var oxygenRequired;
 var bodyMass;
 var maod = 0;
 
+$('.x').keydown(function (e) {
+    if (e.which === 13) {
+        var index = $('.x').index(this) + 1;
+        $('.x').eq(index).focus();
+    }
+});
+
+$('.y').keydown(function (e) {
+    if (e.which === 13) {
+        var index = $('.y').index(this) + 1;
+        $('.y').eq(index).focus();
+    }
+});
+
+$('.y2').keydown(function (e) {
+    if (e.which === 13) {
+        var index = $('.y2').index(this) + 1;
+        $('.y2').eq(index).focus();
+    }
+});
+
 
 function changeScreens() {
   var screen1 = document.getElementById("screen1");
@@ -116,6 +137,11 @@ function getMinimumValue(list) {
 * Button call from HTML, starts getting data from form
 */
 function s1Input() {
+  if (document.getElementById('bodymass').value == "") {
+    alert("Please enter a body mass (kg)");
+    throw new Error("Please enter a body mass");
+  }
+  setMass(document.getElementById('bodymass').value);
   clearGraph('visualisation');
   getList('x');
   getList('y');
@@ -165,12 +191,14 @@ function oxygenDeficit() {
   console.log("Oxygen Consumed: " + oxygenconsumed);
   //console.log(overall - oxygenconsumed);
   //console.log("Interval " + interval);
-  var deficit = (overall - oxygenconsumed) / (60 / barwidth);
+  var deficit = (overall - oxygenconsumed);
+  // deficit per L/s
   console.log("Deficit " + deficit);
   var rval = deficit * 1000;
   console.log("rval : " + rval);
   // milliters 02 per kg
   maod = rval / bodyMass;
+  maod = maod / 180;
 }
 
 function s2Input() {
@@ -258,10 +286,19 @@ function secondGraph() {
   	.scale(y)
   	.orient('left');
 
+    var yAxis2 = d3.svg.axis()
+    .scale(y)
+    .orient('right');
+
       main.append('g')
   	.attr('transform', 'translate(0,0)')
   	.attr('class', 'main axis date')
   	.call(yAxis);
+
+    main.append('g')
+    .attr('transform', 'translate(90,0)')
+    .attr('class', 'main axis date')
+    .call(yAxis2);
 
         var g = main.append("svg:g");
 
@@ -416,7 +453,7 @@ function InitChart() {
            //console.log("Body mass oxygen: " + (oxygenRequired() * 1000 / bodyMass));
 
            // now lets write all important data to p
-           $("#results").text("Y-Intercept: " + Math.round(intercept * 10000) / 10000 + ", X-Intercept: " + Math.round(((-intercept)/slope) * 10000) / 10000 + ", Slope: " + Math.round(slope * 10000) / 10000 + ", R^2: " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "X + " + Math.round(intercept * 10000) / 10000 );
+           $("#results").html("<div>R&sup2;= " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "X + " + Math.round(intercept * 10000) / 10000 + "</div>");
            $("#dataswap").text("Workload");
            $("#datawrap").text("V02 Max (L/Min)");
 
@@ -481,6 +518,7 @@ function kk(input) {
   barwidth = parseInt(input);
   interval = 180 / barwidth;
   for (var index = 0; index <= interval; index++) {
+    yList[index].value = "";
     intervalList[index].style.display = 'inline';
     yList[index].style.display = 'inline';
     intervalList[index].value = (index + 1) * input;
