@@ -294,25 +294,35 @@ function firstGraph() {
   	.attr('width', width)
   	.attr('height', height)
   	.attr('class', 'main')
-
+    
+    
     // Draw the X-axis
     var xAxis = d3.svg.axis()
     .scale(x)
-    .orient('bottom');
+    .orient('bottom')
+    .innerTickSize(-height)
+    .outerTickSize(0)
+    .tickPadding(10);
+
 
     main.append('g')
   	.attr('transform', 'translate(0,' + height + ')')
-  	.attr('class', 'main axis date')
+  	.attr('class', 'main axis date') 
   	.call(xAxis);
 
     // Draw the Y-axis
     var yAxis = d3.svg.axis()
   	.scale(y)
-  	.orient('left');
+  	.orient('left')
+    .innerTickSize(-width)
+    .outerTickSize(0)
+    .tickPadding(10);
+    
 
     main.append('g')
   	.attr('transform', 'translate(0,0)')
   	.attr('class', 'main axis date')
+    
   	.call(yAxis);
 
     // Draw line on right-side of graph
@@ -406,7 +416,10 @@ function secondGraph() {
     .scale(x)
     .orient('bottom')
     .ticks(5)
-    .tickValues(d3.range(0, width, 15));
+    .tickValues(d3.range(0, width, 15))
+    .innerTickSize(-height)
+    .outerTickSize(0)
+    .tickPadding(10);
 
     main.append('g')
   	.attr('transform', 'translate(0,' + height + ')')
@@ -416,7 +429,10 @@ function secondGraph() {
     // Draw the Y-axis
     var yAxis = d3.svg.axis()
   	.scale(y)
-  	.orient('left');
+  	.orient('left')
+    .innerTickSize(-width)
+    .outerTickSize(0)
+    .tickPadding(10);
 
     main.append('g')
   	.attr('transform', 'translate(0,0)')
