@@ -212,7 +212,7 @@ The module them calculates the relationship between O2­ consumed and workload p
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">
                     <label for="bodymass"><strong>Body Mass (kg)</strong></label>
-                    <input id="bodymass" tabindex=1 class="cus-input" autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    <input id="bodymass" tabindex=1 maxlength=6 class="cus-input" autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <label for="name"><strong>Name</strong></label>
                     <input id="name" tabindex=2 class="cus-input" ng-model="yourName" />
                 </div>
@@ -329,7 +329,7 @@ The module them calculates the relationship between O2­ consumed and workload p
                         <li><input class="y2" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="y2" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                     </ul>
-                    
+
                     <p id="yAxisLabel2" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
                     <svg id="graphS2" width="700" height="500" style="position: relative; margin-left: 160px"></svg>
                     <p id="xAxisLabel2" style="text-align: center;"></p>

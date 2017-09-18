@@ -294,8 +294,8 @@ function firstGraph() {
   	.attr('width', width)
   	.attr('height', height)
   	.attr('class', 'main')
-    
-    
+
+
     // Draw the X-axis
     var xAxis = d3.svg.axis()
     .scale(x)
@@ -307,7 +307,7 @@ function firstGraph() {
 
     main.append('g')
   	.attr('transform', 'translate(0,' + height + ')')
-  	.attr('class', 'main axis date') 
+  	.attr('class', 'main axis date')
   	.call(xAxis);
 
     // Draw the Y-axis
@@ -317,12 +317,12 @@ function firstGraph() {
     .innerTickSize(-width)
     .outerTickSize(0)
     .tickPadding(10);
-    
+
 
     main.append('g')
   	.attr('transform', 'translate(0,0)')
   	.attr('class', 'main axis date')
-    
+
   	.call(yAxis);
 
     // Draw line on right-side of graph
@@ -362,7 +362,7 @@ function firstGraph() {
 
 
     // Results and labels to display on graph
-    $("#results").html("<div>R&sup2;= " + correlation() + ", Equation: Y = " + Math.round(slope * 10000) / 10000 + "X + " + Math.round(intercept * 10000) / 10000 + "</div>");
+    $("#results").html("<div>R&sup2;= " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div>");
     $("#xAxisLabel").text("Workload");
     $("#yAxisLabel").text("V02 Max (L/Min)");
 }
@@ -493,7 +493,7 @@ function secondGraph() {
     $("#results2").text("MOAD: " + maod);
     $("#xAxisLabel2").text("Time Interval (s)");
     $("#yAxisLabel2").text("V02 Max (L/Min)");
-           
+
 }
 
 
@@ -515,24 +515,24 @@ function correlation() {
 
 
 function calcMAOD() {
-  
+
     // Sum of deficit values
     var sumO2deficits = 0;
     // Number of intervals in a minute
     var intervalsPMinute = 0;
     intervalsPMinute = 60 / intervalLength;
-    
+
     // Calculating sum of deficits
     for (var i = 0; i < y.length; i++){
         sumO2deficits += (O2req - y[i]);
     }
-    
+
     // Calculate deficit in one minute
     maod = (sumO2deficits / intervalsPMinute);
     // Convert MAOD from LO2 to mLO2
     maod = maod * 1000;
     // Convert MAOD from mLO2 to mLO2/kg
-    maod = maod / bodyMass;
+    maod = Math.round(maod / bodyMass * 10) / 10;
 }
 
 /*
@@ -570,9 +570,9 @@ function reqSpeed(){
     vo2max = parseFloat(document.getElementById('Vmax').value);
     workrate = parseFloat(document.getElementById('supermaximal').value);
     O2req = vo2max*workrate/100;
-    
+
     reqwork = ((O2req - intercept) / slope);
-   
+
     var d = document.getElementById('reqworkload');
     d.value = reqwork;
 }
