@@ -286,19 +286,15 @@ function secondGraph() {
   	.scale(y)
   	.orient('left');
 
-    var yAxis2 = d3.svg.axis()
-    .scale(y)
-    .orient('right');
-
       main.append('g')
   	.attr('transform', 'translate(0,0)')
   	.attr('class', 'main axis date')
   	.call(yAxis);
 
-    main.append('g')
-    .attr('transform', 'translate(90,0)')
-    .attr('class', 'main axis date')
-    .call(yAxis2);
+    // right y axis
+        var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
+        main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
+
 
         var g = main.append("svg:g");
 
@@ -413,10 +409,17 @@ function InitChart() {
   	.scale(y)
   	.orient('left');
 
+
       main.append('g')
   	.attr('transform', 'translate(0,0)')
   	.attr('class', 'main axis date')
   	.call(yAxis);
+
+// right y axis
+    var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
+    main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
+
+
 
       var g = main.append("svg:g");
 
@@ -448,6 +451,7 @@ function InitChart() {
            .text(function(d) {
              return "Y-Intercept: " + intercept + ", Slope: " + slope;
            });
+
 
            //console.log("Oxygen Required: " + oxygenDeficit());
            //console.log("Body mass oxygen: " + (oxygenRequired() * 1000 / bodyMass));
