@@ -28,6 +28,27 @@ var oxygenRequired;
 var bodyMass;
 var maod = 0;
 
+$('.x').keydown(function (e) {
+    if (e.which === 13) {
+        var index = $('.x').index(this) + 1;
+        $('.x').eq(index).focus();
+    }
+});
+
+$('.y').keydown(function (e) {
+    if (e.which === 13) {
+        var index = $('.y').index(this) + 1;
+        $('.y').eq(index).focus();
+    }
+});
+
+$('.y2').keydown(function (e) {
+    if (e.which === 13) {
+        var index = $('.y2').index(this) + 1;
+        $('.y2').eq(index).focus();
+    }
+});
+
 
 function changeScreens() {
   var screen1 = document.getElementById("screen1");
@@ -116,6 +137,11 @@ function getMinimumValue(list) {
 * Button call from HTML, starts getting data from form
 */
 function s1Input() {
+  if (document.getElementById('bodymass').value == "") {
+    alert("Please enter a body mass (kg)");
+    throw new Error("Please enter a body mass");
+  }
+  setMass(document.getElementById('bodymass').value);
   clearGraph('visualisation');
   getList('x');
   getList('y');
