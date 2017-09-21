@@ -436,7 +436,7 @@ function secondGraph() {
 
     main.append('g')
   	.attr('transform', 'translate(0,0)')
-  	.attr('class', 'main axis date')
+  	.attr('class', 'y axis')
   	.call(yAxis);
 
     // Draw line on right-side of axis
@@ -446,6 +446,21 @@ function secondGraph() {
 
     var g = main.append("svg:g");
 
+
+    var maodarea = [{
+      'x': 0,
+      'y': O2req
+    }];
+
+
+    g.selectAll(".bar2")
+    .data(maodarea)
+    .enter().append("rect")
+        .attr("class", "bar2")
+        .attr("x", function(d) { return x(d.x); })
+        .attr("y", function(d) { return y(d.y); })
+        .attr("width", width)
+        .attr("height", function(d) { return height - y(d.y); });
 
     g.selectAll(".bar")
     .data(dataset)
@@ -457,12 +472,13 @@ function secondGraph() {
         .attr("height", function(d) { return height - y(d.y); });
 
 
+
     var lineData = [{
         'x': 0,
-        'y': (vo2max*workrate/100)
+        'y': O2req
     }, {
         'x': 180,
-        'y': (vo2max*workrate/100)
+        'y': O2req
     }];
 
 

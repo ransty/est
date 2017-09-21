@@ -35,8 +35,9 @@
             width: 50%;
         }
         .axis path, .axis line {
-            fill: none;
-            stroke: #777;
+            fill: solid;
+            stroke: black;
+            outline-width: medium;
             shape-rendering: crispEdges;
         }
         .axis text{
@@ -49,8 +50,15 @@
         .bar{
             outline-style: solid;
             outline-width: thin;
-            outline-color: antiquewhite;
+            outline-color: black;
             fill: steelblue;
+        }
+
+        .bar2 {
+          /* margin left: 10px */
+          fill: #EAFFEF;
+          outline-color: black;
+          opacity: 0.9;
         }
         circle {
             fill: steelblue;
