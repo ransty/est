@@ -533,26 +533,32 @@ function calcMAOD() {
     maod = maod * 1000;
     // Convert MAOD from mLO2 to mLO2/kg
     maod = Math.round(maod / bodyMass * 10) / 10;
+
+    thirdGraph();
+
 }
 
 /*
 * Adjusts length of interval table for input based on time intervals set by user
 */
 function adjIntervalTable(input) {
-  var intervalList = document.getElementsByClassName('x2');
-  var yList = document.getElementsByClassName('y2');
-  intervalLength = parseInt(input);
-  numIntervals = totalTime / intervalLength;
-  for (var index = 0; index <= numIntervals; index++) {
-      yList[index].value = "";
-      intervalList[index].style.display = 'inline';
-      yList[index].style.display = 'inline';
-      intervalList[index].value = (index + 1) * input;
-  }
-  for (var i = numIntervals; i <= intervalList.length; i++) {
-      yList[index].value = "";
-      intervalList[i].style.display = 'none';
-      yList[i].style.display = 'none';
+
+  if ((input <= totalTime) && (input % 10 == 0) || (input % 15 == 0)) {
+    var intervalList = document.getElementsByClassName('x2');
+    var yList = document.getElementsByClassName('y2');
+    intervalLength = parseInt(input);
+    numIntervals = totalTime / intervalLength;
+    for (var index = 0; index <= numIntervals; index++) {
+        yList[index].value = "";
+        intervalList[index].style.display = 'inline';
+        yList[index].style.display = 'inline';
+        intervalList[index].value = (index + 1) * input;
+      }
+      for (var i = numIntervals; i <= intervalList.length; i++) {
+        yList[index].value = "";
+        intervalList[i].style.display = 'none';
+        yList[i].style.display = 'none';
+      }
   }
 }
 
@@ -575,4 +581,96 @@ function reqSpeed(){
 
     var d = document.getElementById('reqworkload');
     d.value = reqwork;
+}
+
+function thirdGraph() {
+  var margin = {top: 20, right: 20, bottom: 20, left: 50}
+        , width = 185 - margin.left - margin.right
+        , height = 300 - margin.top - margin.bottom;
+
+    var x = d3.scale.linear()
+    .domain([0, 1])
+    .range([ 0, width ]);
+
+    var y = d3.scale.linear()
+    .domain([0, 100])
+    .range([ height, 0 ]);
+
+    var chart = d3.select('#graphS3')
+  	.append('svg:svg')
+  	.attr('width', width + margin.right + margin.left)
+  	.attr('height', height + margin.top + margin.bottom)
+  	.attr('class', 'chart')
+
+    var main = chart.append('g')
+  	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+  	.attr('width', width)
+  	.attr('height', height)
+  	.attr('class', 'main')
+
+    // Draw the X-axis
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient('bottom')
+    .ticks(0)
+    .tickValues(0)
+    .innerTickSize(0)
+    .outerTickSize(0)
+    .tickPadding(10);
+
+    main.append('g')
+  	.attr('transform', 'translate(0,' + height + ')')
+  	.attr('class', 'main axis date')
+  	.call(xAxis);
+
+    // Draw the Y-axis
+    var yAxis = d3.svg.axis()
+  	.scale(y)
+  	.orient('left')
+    .innerTickSize(-width)
+    .outerTickSize(0)
+    .tickPadding(10);
+
+    main.append('g')
+  	.attr('transform', 'translate(0,0)')
+  	.attr('class', 'main axis date')
+  	.call(yAxis);
+
+    // Draw line on right-side of axis
+    var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
+    main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
+
+
+    var g = main.append("svg:g");
+
+
+    var lineData = [{
+        'x': 0,
+        'y': maod
+    }, {
+        'x': 1,
+        'y': maod
+    }];
+
+
+    var lineFunc = d3.svg.line()
+    .x(function(d) {
+        return x(d.x);
+    })
+    .y(function(d) {
+        return y(d.y);
+    })
+    .interpolate('linear');
+    g.append('svg:path')
+        .attr('d', lineFunc(lineData))
+        .attr('stroke', 'red')
+        .attr('stroke-width', 2)
+        .attr('fill', 'none');
+
+    g.append("text")
+        .attr("transform", "translate(5,"+y(lineData[0].y + 2.7)+")")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .style("fill", "red")
+        .text(maod + "%");
 }
