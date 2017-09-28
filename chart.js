@@ -193,7 +193,10 @@ function clearGraph(string) {
         $("#xAxisLabel2").text("");
         $("#yAxisLabel2").text("");
         $("#results2").text("");
-    };
+        // also clear percentile graph
+        $("#graphS3").empty();
+    }
+
 }
 
 /*
@@ -232,7 +235,8 @@ function s1Input() {
     if (document.getElementById('bodymass').value == "") {
         alert("Please enter a body mass (kg)");
         throw new Error("Please enter a body mass");
-        }
+    }
+    sex = $('input[name="sex"]:checked').val();
     setMass(document.getElementById('bodymass').value);
     clearGraph('graphS1');
     getList('x');
@@ -569,7 +573,6 @@ function calcMAOD() {
 * Adjusts length of interval table for input based on time intervals set by user
 */
 function adjIntervalTable(input) {
-    console.log(180 % input.value);
     if (((input.value <= totalTime) && (180 % input.value == 0)) && ((input.value % 10 == 0) || (input.value % 15 == 0))) {
         input.style.background = "white";
         var intervalList = document.getElementsByClassName('x2');
