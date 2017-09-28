@@ -463,19 +463,20 @@ function secondGraph() {
 
 
     var maodarea = [{
-      'x': 0,
+      'x': intervalLength * ys2.length,
       'y': O2req
     }];
 
- 
+
     g.selectAll(".bar2")
     .data(maodarea)
     .enter().append("rect")
         .attr("class", "bar2")
-        .attr("x", function(d) { return x(d.x); })
+        .attr("x", 0)
         .attr("y", function(d) { return y(d.y); })
-        .attr("width", width)
+        .attr("width", function(d) { return x(d.x); })
         .attr("height", function(d) { return height - y(d.y); });
+    
 
     g.selectAll(".bar")
     .data(vo2MaxValues)
