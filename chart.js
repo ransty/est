@@ -33,6 +33,11 @@ var O2req;
 var xs2 = [];
 var ys2 = [];
 var vo2MaxValues = [];
+var sex;
+var maodMmean = 65;
+var maodMsd = 11;
+var maodFmean = 54;
+var maodFsd = 9;
 
 $(document).ready(function () {
     $('.x').keydown(function (e) {
@@ -556,7 +561,7 @@ function calcMAOD() {
     // Convert MAOD from mLO2 to mLO2/kg
     maod = Math.round(maod / bodyMass * 10) / 10;
 
-    thirdGraph();
+    percentileGraph();
 
 }
 
@@ -608,7 +613,9 @@ function reqSpeed() {
     d.value = reqwork;
 }
 
-function thirdGraph() {
+function percentileGraph() {
+    var rank = calcPercentile(sex);
+    
     var margin = { top: 20, right: 20, bottom: 20, left: 50 }
         , width = 185 - margin.left - margin.right
         , height = 300 - margin.top - margin.bottom;
@@ -669,10 +676,10 @@ function thirdGraph() {
 
     var lineData = [{
         'x': 0,
-        'y': maod
+        'y': rank
     }, {
         'x': 1,
-        'y': maod
+        'y': rank
     }];
 
     var lineFunc = d3.svg.line()
@@ -694,6 +701,49 @@ function thirdGraph() {
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
         .style("fill", "red")
-        .text(maod + "%");
+        .text(rank + "%");
     //a
+}
+
+function calcPercentile(sex) {
+    var mean;
+    var sd;
+
+    if (sex == "female") {
+        mean = maodFmean;
+        sd = maodFsd;
+    } else {
+        mean = maodMmean;
+        sd = maodMsd;
+    }
+    
+    // z == number of standard deviations from the mean
+    var z = ((maod - mean)/sd);
+
+    // If z is greater than 6.5 standard deviations from the mean
+    // the number of significant digits will be outside of a reasonable 
+    // range
+    if ( z < -6.5) {
+        return 0.0;  
+    } else if( z > 6.5) {
+        return 1.0;
+    }      
+
+    var factK = 1;
+    var sum = 0;
+    var term = 1;
+    var k = 0;
+    var loopStop = Math.exp(-23);
+    
+    while (Math.abs(term) > loopStop) {
+        term = .3989422804 * Math.pow(-1,k) * Math.pow(z,k) / (2 * k + 1) / Math.pow(2,k) * Math.pow(z,k+1) / factK;
+        sum += term;
+        k++;
+        factK *= k;
+    }
+    
+    sum += 0.5;
+    sum = sum * 100;
+    return sum;
+
 }
