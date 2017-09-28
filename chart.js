@@ -1,8 +1,8 @@
 /* Instance variables */
 var xInput;
 var yInput;
-var x = [];
-var y = [];
+var xs1 = [];
+var ys1 = [];
 var ny = 0;
 var nx = 0;
 var count;
@@ -18,9 +18,9 @@ var yFinal = [];
 var lineY1;
 var lineY2;
 var lineX1;
-var dataset = [];
+var workloadData = [];
 
-/* Second screen variable */
+/* Second screen variables */
 var numIntervals;
 var intervalLength;
 var vo2max;
@@ -30,6 +30,9 @@ var bodyMass;
 var maod = 0;
 var totalTime = 180;
 var O2req;
+var xs2 = [];
+var ys2 = [];
+var vo2MaxValues = [];
 
 $('.x').keydown(function (e) {
     if (e.which === 13) {
@@ -88,10 +91,14 @@ function getList(htmlClass) {
   }
   if (check == input.length ) {
     throw new Error("No input values for X, nothing to be drawn.");
-  } else if ((htmlClass == 'x') || (htmlClass == 'x2')) {
-      x = copy(input);
-  } else if ((htmlClass == 'y') || (htmlClass == 'y2')) {
-      y = copy(input);
+  } else if (htmlClass == 'x') {
+      xs1 = copy(input);
+  } else if (htmlClass == 'x2'){
+      xs2 = copy(input);
+  } else if (htmlClass == 'y') {
+      ys1 = copy(input);
+  } else if (htmlClass == 'y2') {
+      ys2 = copy(input);
   }
 }
 
@@ -147,38 +154,46 @@ function getMinimumValue(list) {
 }
 
 /*
-* Clears the graph (jQuery)
+* Clears the current screen graph and values using jQuery
 * NOTE: jQuery must be loaded before this script for this to work
 */
 function clearGraph(string) {
-  console.log("#" + string + "");
-  $("#" + string + "").empty();
-  // clear all variables
-  xInput = 0;
-  yInput = 0;
-  x = [];
-  y = [];
-  ny = 0;
-  nx = 0;
-  count = 0;
-  sumX = 0.0;
-  sumY = 0.0;
-  sumY2 = 0;
-  sumX2 = 0;
-  sumXY = 0;
-  //slope = 0.0;
-  //intercept = 0;
-  xFinal = [];
-  yFinal = [];
-  lineY1 = 0;
-  lineY2 = 0;
-  lineX1 = 0;
-  lineX = 0;
-  dataset = [];
-  $("#xAxisLabel").text("");
-  $("#yAxisLabel").text("");
-  $("#xAxisLabel2").text("");
-  $("#yAxisLabel2").text("");
+    console.log("#" + string + "");
+    $("#" + string + "").empty();
+
+    // Clears all variables
+    if (string == 'graphS1'){
+        xInput = 0;
+        yInput = 0;
+        xs1 = [];
+        ys1 = [];
+        ny = 0;
+        nx = 0;
+        count = 0;
+        sumX = 0.0;
+        sumY = 0.0;
+        sumY2 = 0;
+        sumX2 = 0;
+        sumXY = 0;
+        $("#xAxisLabel").text("");
+        $("#yAxisLabel").text("");
+        $("#results").text("");
+        xFinal = [];
+        yFinal = [];
+        lineY1 = 0;
+        lineY2 = 0;
+        lineX1 = 0;
+        lineX = 0;
+        workloadData = []; 
+        
+    } else if (string == 'graphS2'){
+        vo2MaxValues = [];
+        xs2 = [];
+        ys2 = [];
+        $("#xAxisLabel2").text("");
+        $("#yAxisLabel2").text("");
+        $("#results2").text("");
+    };    
 }
 
 /*
@@ -223,34 +238,34 @@ function s1Input() {
   getList('x');
   getList('y');
   // get the sum of xgrabInput
-  sumX = sum(x);
+  sumX = sum(xs1);
   // get the sum of y
-  sumY = sum(y);
+  sumY = sum(ys1);
   // get the multiplication sum of x[i] * x[i]
-  sumX2 = multiplySum(x, x);
+  sumX2 = multiplySum(xs1, xs1);
   // get the multiplication sum of x[i] * y[i]
-  sumXY = multiplySum(x, y);
+  sumXY = multiplySum(xs1, ys1);
   // sum of y * y
-  sumY2 = multiplySum(y, y);
+  sumY2 = multiplySum(ys1, ys1);
   // calculate the slope of the regression line
-  slope = (x.length * sumXY - sumX * sumY) / (x.length * sumX2 - sumX * sumX);
+  slope = (xs1.length * sumXY - sumX * sumY) / (xs1.length * sumX2 - sumX * sumX);
   // calculate the x intercept for the regression line
-  intercept = (sumY - slope * sumX) / x.length;
+  intercept = (sumY - slope * sumX) / xs1.length;
   // get the maximum x value
-  lineX2 = getMaximumValue(x);
+  lineX2 = getMaximumValue(xs1);
   // get the minimum x value
-  lineX1 = getMinimumValue(x);
+  lineX1 = getMinimumValue(xs1);
   // get the maximum value of y
-  maxY = getMaximumValue(y);
+  maxY = getMaximumValue(ys1);
   // calculate the regression of 0
   lineY1 = regression(0);
   // calculate the regression of the maximum x value
   lineY2 = regression(lineX2);
   // set dataset for the scatter-dots
-  for (var i = 0; i <  x.length; i++) {
-     dataset.push([x[i], y[i]]);
+  for (var i = 0; i <  xs1.length; i++) {
+     workloadData.push([xs1[i], ys1[i]]);
   }
-  count = (x.length == y.length) ? x.length : alert("X and Y list does not match!");
+  count = (xs1.length == ys1.length) ? xs1.length : alert("X and Y list does not match!");
   firstGraph();
     freeButton();
 }
@@ -272,7 +287,7 @@ function firstGraph() {
         'y': lineY2
     }];
 
-    var data = dataset;
+    var data = workloadData;
 
     var x = d3.scale.linear()
     .domain([0, lineX2 + 5])
@@ -362,7 +377,7 @@ function firstGraph() {
 
 
     // Results and labels to display on graph
-    $("#results").html("<div>R&sup2;= " + correlation() + ", Equation: Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div>");
+    $("#results").html("<div>R&sup2;= " + correlation() + ", Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div>");
     $("#xAxisLabel").text("Workload");
     $("#yAxisLabel").text("V02 Max (L/Min)");
 }
@@ -376,8 +391,8 @@ function s2Input() {
     getList('x2');
     getList('y2');
 
-    for (var i = 0; i <  x.length; i++) {
-        dataset[i] = {'x': x[i], 'y': y[i]};
+    for (var i = 0; i <  xs2.length; i++) {
+        vo2MaxValues[i] = {'x': xs2[i], 'y': ys2[i]};
    }
 
   secondGraph();
@@ -452,7 +467,7 @@ function secondGraph() {
       'y': O2req
     }];
 
-
+ 
     g.selectAll(".bar2")
     .data(maodarea)
     .enter().append("rect")
@@ -463,7 +478,7 @@ function secondGraph() {
         .attr("height", function(d) { return height - y(d.y); });
 
     g.selectAll(".bar")
-    .data(dataset)
+    .data(vo2MaxValues)
     .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function(d) { return x(d.x - intervalLength); })
@@ -539,8 +554,8 @@ function calcMAOD() {
     intervalsPMinute = 60 / intervalLength;
 
     // Calculating sum of deficits
-    for (var i = 0; i < y.length; i++){
-        sumO2deficits += (O2req - y[i]);
+    for (var i = 0; i < ys2.length; i++){
+        sumO2deficits += (O2req - ys2[i]);
     }
 
     // Calculate deficit in one minute
@@ -590,7 +605,7 @@ function setMass(mass) {
 */
 function reqSpeed(){
     vo2max = parseFloat(document.getElementById('Vmax').value);
-    workrate = parseFloat(document.getElementById('supermaximal').value);
+    workrate = parseFloat(document.getElementById('supramaximal').value);
     O2req = vo2max*workrate/100;
 
     reqwork = ((O2req - intercept) / slope);
