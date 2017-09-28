@@ -57,26 +57,22 @@ $(document).ready(function () {
     });
 });
 
-/*
-* Sets patient name
-*/
-function setName(name) {
-    var d = document.getElementById('patientname');
-    d.innerHTML = "Patient Name: " + name + "<input name='submitMedical' value='' title='edit client details' class='profile_edit_btn' type='submit' />";
-}
-
 function changeScreens() {
     var screen1 = document.getElementById("screen1");
     var screen2 = document.getElementById("screen2");
     var button = document.getElementById("move");
     if (screen1.style.display == 'inline') {
+        var title = document.getElementById("title");
+        title.innerHTML = "Anaerobic capacity / MAOD (screen 2)";
         screen1.style.display = 'none';
         screen2.style.display = 'inline';
         button.value = "Previous Screen";
     } else {
+        var title = document.getElementById("title");
+        title.innerHTML = "Anaerobic capacity / MAOD (screen 1)";
         screen1.style.display = 'inline';
         screen2.style.display = 'none';
-        button.value = "Next Screen"
+        button.value = "Next Screen";
     }
 }
 
@@ -99,7 +95,6 @@ function getList(htmlClass) {
         xs2 = copy(input);
     } else if (htmlClass == 'y') {
         ys1 = copy(input);
-        console.log(ys1.toString());
     } else if (htmlClass == 'y2') {
         ys2 = copy(input);
     }
@@ -117,7 +112,6 @@ function freeButton() {
 
 /*
 * Removes invalid input, i.e blank spots
-* TODO: More error checking, this isn't sufficient enough for the program
 */
 function copy(input) {
     var temp = [];
@@ -134,7 +128,7 @@ function copy(input) {
 * Gets the maximum value from an array of floats
 */
 function getMaximumValue(list) {
-    var maximum = -99999;
+    var maximum = -(Math.pow(2, 53) - 1);
     for (var i = 0; i < list.length; i++) {
         if (list[i] >= maximum) {
             maximum = list[i];
@@ -147,7 +141,7 @@ function getMaximumValue(list) {
 * Gets the minimum value from an array of floats
 */
 function getMinimumValue(list) {
-    var minimum = 99999;
+    var minimum = Math.pow(2, 53) - 1;
     for (var i = 0; i < list.length; i++) {
         if (list[i] <= minimum) {
             minimum = list[i];
@@ -158,10 +152,8 @@ function getMinimumValue(list) {
 
 /*
 * Clears the current screen graph and values using jQuery
-* NOTE: jQuery must be loaded before this script for this to work
 */
 function clearGraph(string) {
-    //console.log("#" + string + "");
     $("#" + string + "").empty();
 
     // Clears all variables
@@ -235,7 +227,7 @@ function s1Input() {
     if (document.getElementById('bodymass').value == "") {
         alert("Please enter a body mass (kg)");
         throw new Error("Please enter a body mass");
-    }
+        }
     setMass(document.getElementById('bodymass').value);
     clearGraph('graphS1');
     getList('x');
@@ -302,7 +294,7 @@ function firstGraph() {
 
     var y = d3.scale.linear()
         .domain([0, 5])
-        .range([height, 0]);;
+        .range([height, 0]);
 
 
     var chart = d3.select('#graphS1')
@@ -344,7 +336,6 @@ function firstGraph() {
     main.append('g')
         .attr('transform', 'translate(0,0)')
         .attr('class', 'main axis date')
-
         .call(yAxis);
 
     // Draw line on right-side of graph
@@ -393,6 +384,7 @@ function firstGraph() {
 * Button call from HTML, starts getting data from form
 */
 function s2Input() {
+    
     reqSpeed();
     clearGraph('graphS2');
     getList('x2');
@@ -465,15 +457,12 @@ function secondGraph() {
     var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
     main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
-
     var g = main.append("svg:g");
-
 
     var maodarea = [{
         'x': intervalLength * ys2.length,
         'y': O2req
     }];
-
 
     g.selectAll(".bar2")
         .data(maodarea)
@@ -484,7 +473,6 @@ function secondGraph() {
         .attr("width", function (d) { return x(d.x); })
         .attr("height", function (d) { return height - y(d.y); });
 
-
     g.selectAll(".bar")
         .data(vo2MaxValues)
         .enter().append("rect")
@@ -494,8 +482,6 @@ function secondGraph() {
         .attr("width", width / numIntervals)
         .attr("height", function (d) { return height - y(d.y); });
 
-
-
     var lineData = [{
         'x': 0,
         'y': O2req
@@ -503,7 +489,6 @@ function secondGraph() {
         'x': 180,
         'y': O2req
     }];
-
 
     var lineFunc = d3.svg.line()
         .x(function (d) {
@@ -529,10 +514,9 @@ function secondGraph() {
     calcMAOD();
 
     // Results and label to display on graph
-    $("#results2").text("MOAD: " + maod);
+    $("#results2").text("MOAD: " + maod + " (mL/kg O2");
     $("#xAxisLabel2").text("Time Interval (s)");
     $("#yAxisLabel2").text("V02 Max (L/Min)");
-
 }
 
 
@@ -554,7 +538,6 @@ function correlation() {
 
 
 function calcMAOD() {
-
     // Sum of deficit values
     var sumO2deficits = 0;
     // Number of intervals in a minute
@@ -581,23 +564,25 @@ function calcMAOD() {
 * Adjusts length of interval table for input based on time intervals set by user
 */
 function adjIntervalTable(input) {
-
-    if ((input <= totalTime) && (input % 10 == 0) || (input % 15 == 0)) {
+    if (((input.value <= totalTime) && (180 % input.value == 0)) && ((input.value % 10 == 0) || (input.value % 15 == 0))) {
+        input.style.background = "white";
         var intervalList = document.getElementsByClassName('x2');
         var yList = document.getElementsByClassName('y2');
-        intervalLength = parseInt(input);
+        intervalLength = parseInt(input.value);
         numIntervals = totalTime / intervalLength;
         for (var index = 0; index <= numIntervals; index++) {
             yList[index].value = "";
             intervalList[index].style.display = 'inline';
             yList[index].style.display = 'inline';
-            intervalList[index].value = (index + 1) * input;
+            intervalList[index].value = (index + 1) * input.value;
         }
         for (var i = numIntervals; i <= intervalList.length; i++) {
             yList[index].value = "";
             intervalList[i].style.display = 'none';
             yList[i].style.display = 'none';
         }
+    } else {
+        input.style.background = "red";
     }
 }
 
@@ -679,9 +664,7 @@ function thirdGraph() {
     var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
     main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
-
     var g = main.append("svg:g");
-
 
     var lineData = [{
         'x': 0,
@@ -690,7 +673,6 @@ function thirdGraph() {
         'x': 1,
         'y': maod
     }];
-
 
     var lineFunc = d3.svg.line()
         .x(function (d) {

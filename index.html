@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>Result Screen</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
@@ -30,7 +30,7 @@
             </div>
             <div class="orng_box_head f_left">
                 <h3>Fitness Testing</h3>
-                <p>Anaerobic strength and power / vertical jump</p>
+                <p id="title">Anaerobic capacity / MAOD (screen 1)</p>
             </div>
 
             <div class="orng_box_btn f_right">
@@ -44,7 +44,7 @@
             <div class="orng_box_btn f_right">
                 <form name="vpform" id="vpvirticaljumpgen" method="post">
                     <a href="#" class="vitual_btn"><img src="http://115.112.118.252/VirtualEST//assets/images/virtual_icon.png" style="margin-top: 12px;"></a>
-                    <input type="hidden" name="vptype" value="vjump_vp" >
+                    <input type="hidden" name="vptype" value="vjump_vp">
                 </form>
             </div>
 
@@ -52,10 +52,10 @@
             <div class="overlay">&nbsp;</div>
 
             <div class="info_block">
-                <div class="info_block_head">Vertical jump test</div>
+                <div class="info_block_head"></div>
                 <p>The MOAD test is a short-duration, high-intensity activity. In screen 1, values from the activity are entered as O2 consumed and workrate the activity was performed at (either km/h or watts), in screen two they are entered as O2 consumed and the time intervals of the activity (in seconds).</p>
-<p>
-The module them calculates the relationship between O2­ consumed and workload performed in screen one, providing a linear equation based on regression. In screen two, the required workload to reach a provided VO2max and the corresponding MAOD is calculated.
+                <p>
+                    The module them calculates the relationship between O2­ consumed and workload performed in screen one, providing a linear equation based on regression. In screen two, the required workload to reach a provided VO2max and the corresponding MAOD is calculated.
                 </p>
                 <div class="info_block_foot">
                     <a href="#" class="lite_btn grey_btn f_right close">Close</a>
@@ -78,7 +78,8 @@ The module them calculates the relationship between O2­ consumed and workload p
                     <a href="#" class="menu_btn"></a>
                     <div class="drop_main" style="position: absolute; top:0; display:none;">
                         <ul>
-                            <li><a href="#" id="anaerobic_strength"><img> Anaerobic strength and power</a>
+                            <li>
+                                <a href="#" id="anaerobic_strength"><img> Anaerobic strength and power</a>
                                 <ul class="sub_menu">
                                     <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/vertical_jump">vertical jump</a></li>
                                     <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/flight_time">flight:contact time</a></li>
@@ -88,15 +89,18 @@ The module them calculates the relationship between O2­ consumed and workload p
                                 </ul>
                             </li>
 
-                            <li><a href="#" id="anaerobic_capacity"><img> Anaerobic capacity</a>
+                            <li>
+                                <a href="#" id="anaerobic_capacity"><img> Anaerobic capacity</a>
                                 <ul class="sub_menu">
                                     <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/total_work_done_30s">30 s total work [kJ]</a></li>
                                 </ul>
                             </li>
 
-                            <li><a href="#" id="aerobic_fitness"><img> Aerobic fitness</a>
+                            <li>
+                                <a href="#" id="aerobic_fitness"><img> Aerobic fitness</a>
                                 <ul class="sub_menu">
-                                    <li><a href="#" id="VO2max">VO<sub>2max</sub> [mL/kg/min]</a>
+                                    <li>
+                                        <a href="#" id="VO2max">VO<sub>2max</sub> [mL/kg/min]</a>
                                         <ul class="inner_sub_menu">
                                             <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/submaximal_test">submaximal tests</a></li>
                                             <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/shuttle_test">20 m shuttle test</a></li>
@@ -113,12 +117,12 @@ The module them calculates the relationship between O2­ consumed and workload p
             </div>
 
 
-    	<!--Start right -->
+            <!--Start right -->
             <div id="screen1" style="display: inline" class="right-section right-section_new">
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">
                     <label for="bodymass"><strong>Body Mass (kg)</strong></label>
-                    <input id="bodymass" tabindex=1 maxlength=6 class="cus-input" autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    <input id="bodymass" tabindex=1 maxlength=6 class="cus-input" required autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <label for="name"><strong>Name</strong></label>
                     <input id="name" tabindex=2 class="cus-input" ng-model="yourName" />
                 </div>
@@ -145,7 +149,7 @@ The module them calculates the relationship between O2­ consumed and workload p
                     </ul>
 
                     <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
-                        <label style="margin: 0; padding: 0;">VO2 Max</label>
+                        <label style="margin: 0; padding: 0;">VO2 Max (L/min)</label>
                         <li><input class="y" style="width: 50px;" tabindex=3 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="y" style="width: 50px;" tabindex=5 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="y" style="width: 50px;" tabindex=7 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
@@ -161,7 +165,7 @@ The module them calculates the relationship between O2­ consumed and workload p
                     </ul>
                     <p id="yAxisLabel" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
 
-                    <input class="lite_btn btn_green" onclick="s1Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 370px; width: 122px"/>
+                    <input class="lite_btn btn_green" onclick="s1Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 370px; width: 122px" />
                     <input class="lite_btn btn_green" onclick="clearGraph('graphS1')" name="clear" value="Clear Graph" type="button" style="position: absolute; margin-top: 420px; width: 122px" />
                     <input class="lite_btn btn_gray" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" disabled="true" style="position: absolute; margin-top: 470px; width: 122px" />
 
@@ -173,11 +177,11 @@ The module them calculates the relationship between O2­ consumed and workload p
             <div id="screen2" name="screen2" style="display: none" class="right-section right-section_new">
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">
-                    <label for="value"><strong>Time interval</strong></label>
-                    <input id="timeInterval" class="cus-input" style="width: 40px;" onkeypress="adjIntervalTable(this.value)" onkeydown="adjIntervalTable(this.value)" onChange="adjIntervalTable(this.value)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    <label for="value"><strong>Time interval (s)</strong></label>
+                    <input id="timeInterval" class="cus-input" required style="width: 40px;" maxlength="3" onkeypress="adjIntervalTable(this)" onkeydown="adjIntervalTable(this.value)" onChange="adjIntervalTable(this.value)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <label for="Vmax"><strong>Estimated V02max (L/min)</strong></label>
-                    <input id="Vmax" style="width: 40px;"/>
-                    <label for="supramaximal"><strong>Supramaximal Workrate</strong></label>
+                    <input id="Vmax" style="width: 40px;" />
+                    <label for="supramaximal"><strong>Supramaximal Workrate (%)</strong></label>
                     <input id="supramaximal" style="width: 40px;" />
                     <label for="reqworkload"><strong>Required Speed/Power</strong></label>
                     <input id="reqworkload" style="width: 40px" />
@@ -209,7 +213,7 @@ The module them calculates the relationship between O2­ consumed and workload p
                         <li><input disabled class="x2" style="width: 50px;" value="17" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input disabled class="x2" style="width: 50px;" value="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
 
-                       <!--<li></li>-->
+                        <!--<li></li>-->
                     </ul>
 
                     <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
@@ -243,8 +247,8 @@ The module them calculates the relationship between O2­ consumed and workload p
                     <input class="lite_btn btn_green" onclick="clearGraph('graphS2')" name="clear" value="Clear Graph" type="button" style="position: absolute; margin-left: 128px;   width: 122px" />
                     <input class="lite_btn btn_green" id="move" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-left: 251px;" />
 
-<br>
-<svg id="graphS3" width="185" height="300" style="position: relative;"></svg>
+                    <br>
+                    <svg id="graphS3" width="185" height="300" style="position: relative;"></svg>
 
                 </div>
             </div>
