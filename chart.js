@@ -87,7 +87,7 @@ function getList(htmlClass) {
     var check = 0;
     input = document.getElementsByClassName(htmlClass);
     for (var i = 0; i < input.length; i++) {
-        if (input[i].value == "") {
+        if (!input[i].value) {
             check++;
         }
     }
@@ -99,6 +99,7 @@ function getList(htmlClass) {
         xs2 = copy(input);
     } else if (htmlClass == 'y') {
         ys1 = copy(input);
+        console.log(ys1.toString());
     } else if (htmlClass == 'y2') {
         ys2 = copy(input);
     }
@@ -121,7 +122,7 @@ function freeButton() {
 function copy(input) {
     var temp = [];
     for (var index = 0; index < input.length; index++) {
-        if (input[index].value == "") {
+        if (!input[index].value) {
             continue;
         }
         temp[index] = parseFloat(input[index].value);
@@ -160,7 +161,7 @@ function getMinimumValue(list) {
 * NOTE: jQuery must be loaded before this script for this to work
 */
 function clearGraph(string) {
-    console.log("#" + string + "");
+    //console.log("#" + string + "");
     $("#" + string + "").empty();
 
     // Clears all variables
@@ -267,7 +268,11 @@ function s1Input() {
     for (var i = 0; i < xs1.length; i++) {
         workloadData.push([xs1[i], ys1[i]]);
     }
-    count = (xs1.length == ys1.length) ? xs1.length : alert("X and Y list does not match!");
+    if (xs1.length != ys1.length) {
+        alert("X list does not match the Y list");
+    } else {
+        count = xs1.length;
+    }
     firstGraph();
     freeButton();
 }

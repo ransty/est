@@ -1,7 +1,6 @@
 // JavaScript source code
 window.onload = function () {
     $("#vo2Max_value").val(36.5);
-    changeMean();
 };
 $(document).ready(function () {
     var divHeight = $('.contain').height();
