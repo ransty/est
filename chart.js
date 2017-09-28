@@ -564,6 +564,7 @@ function calcMAOD() {
 * Adjusts length of interval table for input based on time intervals set by user
 */
 function adjIntervalTable(input) {
+    console.log(180 % input.value);
     if (((input.value <= totalTime) && (180 % input.value == 0)) && ((input.value % 10 == 0) || (input.value % 15 == 0))) {
         input.style.background = "white";
         var intervalList = document.getElementsByClassName('x2');

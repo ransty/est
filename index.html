@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -125,6 +125,8 @@
                     <input id="bodymass" tabindex=1 maxlength=6 class="cus-input" required autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <label for="name"><strong>Name</strong></label>
                     <input id="name" tabindex=2 class="cus-input" ng-model="yourName" />
+                    <input type="radio" style="display: inline" name="season" value="female"> Female
+                    <input type="radio" style="display: inline" name="season" value="male"> Male
                 </div>
 
                 <br>
@@ -178,7 +180,7 @@
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">
                     <label for="value"><strong>Time interval (s)</strong></label>
-                    <input id="timeInterval" class="cus-input" required style="width: 40px;" maxlength="3" onkeypress="adjIntervalTable(this)" onkeydown="adjIntervalTable(this.value)" onChange="adjIntervalTable(this.value)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    <input id="timeInterval" class="cus-input" required style="width: 40px;" maxlength="3" onkeypress="adjIntervalTable(this)" onkeydown="adjIntervalTable(this)" onChange="adjIntervalTable(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <label for="Vmax"><strong>Estimated V02max (L/min)</strong></label>
                     <input id="Vmax" style="width: 40px;" />
                     <label for="supramaximal"><strong>Supramaximal Workrate (%)</strong></label>
@@ -249,6 +251,10 @@
 
                     <br>
                     <svg id="graphS3" width="185" height="300" style="position: relative;"></svg>
+
+                    
+
+
 
                 </div>
             </div>
