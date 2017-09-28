@@ -694,4 +694,5 @@ function thirdGraph() {
         .attr("text-anchor", "start")
         .style("fill", "red")
         .text(maod + "%");
+    //a
 }
