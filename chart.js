@@ -197,7 +197,8 @@ function clearGraph(string, button) {
         if (button) {
             var xList = document.getElementsByClassName("x");
             var yList = document.getElementsByClassName("y");
-
+            var bodymass = document.getElementById("bodymass");
+            bodymass.value = "";
             for (var i = 0; i < xList.length; i++) {
                 xList[i].value = "";
                 yList[i].value = "";
@@ -218,7 +219,8 @@ function clearGraph(string, button) {
         if (button) {
             var xList = document.getElementsByClassName("x2");
             var yList = document.getElementsByClassName("y2");
-
+            var bodymass = document.getElementById("bodymass");
+            bodymass.value = "";
             for (var i = 0; i < xList.length; i++) {
                 xList[i].value = "";
                 yList[i].value = "";
