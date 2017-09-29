@@ -287,14 +287,27 @@ function firstGraph() {
         , width = 700 - margin.left - margin.right
         , height = 500 - margin.top - margin.bottom;
 
+    /* Determines start & end X&Y coordinates to plot line within bounds of axis */
+    var xP1;
+    var yP1;
+    if (intercept >= 0){
+        xP1 = 0;
+        yP1 = lineY1;
+    } else {
+        xP1 = (-intercept/slope);
+        yP1 = 0;
+    };
+    
+    
+    /* Start and end X & Y coordinates for regression line plotted on graph*/
     var lineData = [{
-        'x': 0,
-        'y': lineY1
+        'x': xP1,
+        'y': yP1
     }, {
         'x': lineX2,
         'y': lineY2
     }];
-
+    
     var data = workloadData;
 
     var x = d3.scale.linear()
