@@ -229,12 +229,10 @@ function clearGraph(string, button) {
         $("#graphS3").empty();
 
         if (button) {
-            var xList = document.getElementsByClassName("x2");
             var yList = document.getElementsByClassName("y2");
             var bodymass = document.getElementById("bodymass");
             bodymass.value = "";
-            for (var i = 0; i < xList.length; i++) {
-                xList[i].value = "";
+            for (var i = 0; i < yList.length; i++) {
                 yList[i].value = "";
             }
         }
@@ -447,7 +445,12 @@ function firstGraph() {
 
     // Results and labels to display on graph
     $("#results").html("<div>R&sup2;= " + correlation() + ", Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div>");
-    $("#xAxisLabel").text("Workload");
+    if ($('input[name="workloadUnits"]:checked').val() == "speed") {
+        $("#xAxisLabel").text("Workload (Kph)");
+    } else {
+        $("#xAxisLabel").text("Workload (W)");
+    }
+    
     $("#yAxisLabel").text("V02 Max (L/Min)");
 }
 
@@ -585,7 +588,7 @@ function secondGraph() {
     calcMAOD();
 
     // Results and label to display on graph
-    $("#results2").text("MOAD: " + maod + " (mL/kg O2");
+    $("#results2").text("MOAD: " + maod + " mL/kg O2");
     $("#xAxisLabel2").text("Time Interval (s)");
     $("#yAxisLabel2").text("V02 Max (L/Min)");
 }
@@ -682,7 +685,7 @@ function percentileGraph() {
     var rank = calcPercentile(sex);
     
     var margin = { top: 20, right: 20, bottom: 20, left: 50 }
-        , width = 185 - margin.left - margin.right
+        , width = 100 - margin.left - margin.right
         , height = 300 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
@@ -767,6 +770,25 @@ function percentileGraph() {
         .attr("text-anchor", "start")
         .style("fill", "red")
         .text(Math.round(rank * 100) / 100 + "%");
+
+    var maodarea = [{
+        'x': 0,
+        'y': 0
+    }, {
+        'x': 1,
+        'y': rank
+    }];
+
+    // fill up to line
+    g.selectAll(".bar")
+        .data(maodarea)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", 0)
+        .attr("y", function (d) { return y(d.y); })
+        .attr("width", function (d) { return x(d.x); })
+        .attr("height", function (d) { return height - y(d.y); });
+
 }
 
 function calcPercentile(sex) {
@@ -787,10 +809,12 @@ function calcPercentile(sex) {
     // If z is greater than 6.5 standard deviations from the mean
     // the number of significant digits will be outside of a reasonable 
     // range
-    if ( z < -6.5) {
+    if (z < -6.5) {
+        alert("MAOD outside of expected bounds. Verify input values.");
         return 0.0;  
-    } else if( z > 6.5) {
-        return 1.0;
+    } else if (z > 6.5) {
+        alert("MAOD outside of expected bounds. Verify input values.");
+        return 0.0;
     }      
 
     var factK = 1;
