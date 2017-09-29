@@ -62,11 +62,19 @@ $(document).ready(function () {
     });
 });
 
+/*
+* Switches between screens
+* Sets sex and bodymass entered on first screen
+*/
 function changeScreens() {
+    
     var screen1 = document.getElementById("screen1");
     var screen2 = document.getElementById("screen2");
     var button = document.getElementById("move");
     if (screen1.style.display == 'inline') {
+        sex = $('input[name="sex"]:checked').val();
+        setMass(document.getElementById('bodymass').value);
+        
         var title = document.getElementById("title");
         title.innerHTML = "Anaerobic capacity / MAOD (screen 2)";
         screen1.style.display = 'none';
@@ -236,8 +244,6 @@ function s1Input() {
         alert("Please enter a body mass (kg)");
         throw new Error("Please enter a body mass");
     }
-    sex = $('input[name="sex"]:checked').val();
-    setMass(document.getElementById('bodymass').value);
     clearGraph('graphS1');
     getList('x');
     getList('y');
@@ -717,8 +723,7 @@ function percentileGraph() {
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
         .style("fill", "red")
-        .text(rank + "%");
-    //a
+        .text(Math.round(rank * 100) / 100 + "%");
 }
 
 function calcPercentile(sex) {
