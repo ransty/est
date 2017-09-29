@@ -179,7 +179,7 @@ function getMinimumValue(list) {
 /*
 * Clears the current screen graph and values using jQuery
 */
-function clearGraph(string) {
+function clearGraph(string, button) {
     $("#" + string + "").empty();
 
     // Clears all variables
@@ -207,6 +207,17 @@ function clearGraph(string) {
         lineX = 0;
         workloadData = [];
 
+        if (button) {
+            var xList = document.getElementsByClassName("x");
+            var yList = document.getElementsByClassName("y");
+            var bodymass = document.getElementById("bodymass");
+            bodymass.value = "";
+            for (var i = 0; i < xList.length; i++) {
+                xList[i].value = "";
+                yList[i].value = "";
+            }
+        }
+
     } else if (string == 'graphS2') {
         vo2MaxValues = [];
         xs2 = [];
@@ -216,6 +227,17 @@ function clearGraph(string) {
         $("#results2").text("");
         // also clear percentile graph
         $("#graphS3").empty();
+
+        if (button) {
+            var xList = document.getElementsByClassName("x2");
+            var yList = document.getElementsByClassName("y2");
+            var bodymass = document.getElementById("bodymass");
+            bodymass.value = "";
+            for (var i = 0; i < xList.length; i++) {
+                xList[i].value = "";
+                yList[i].value = "";
+            }
+        }
     }
 
 }
@@ -265,7 +287,7 @@ function s1Input() {
         throw new Error("Please select workload units");      
     }
 
-    clearGraph('graphS1');
+    clearGraph('graphS1', false);
     getList('x');
     getList('y');
     // get the sum of xgrabInput
@@ -435,7 +457,7 @@ function firstGraph() {
 function s2Input() {
     
     reqSpeed();
-    clearGraph('graphS2');
+    clearGraph('graphS2', false);
     getList('x2');
     getList('y2');
 
