@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -135,6 +135,8 @@
                 <div class="field_row">
                     <ul class="field_24" id="workload" style="position: absolute;">
                         <label style="margin: 0; padding: 0">Workload</label>
+                        W <input type="radio" style="display: inline" name="workloadUnits" value="power"> 
+                        Kph <input type="radio" style="display: inline" name="workloadUnits" value="speed">
                         <li><input class="x" style="width: 50px;" tabindex=2 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="x" style="width: 50px;" tabindex=4 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="x" style="width: 50px;" tabindex=6 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
@@ -169,7 +171,7 @@
                     <p id="yAxisLabel" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
 
                     <input class="lite_btn btn_green" onclick="s1Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 370px; width: 122px" />
-                    <input class="lite_btn btn_green" onclick="clearGraph('graphS1', true)" name="clear" value="Clear Data" type="button" style="position: absolute; margin-top: 420px; width: 122px" />
+                    <input class="lite_btn btn_green" onclick="clearGraph('graphS1')" name="clear" value="Clear Graph" type="button" style="position: absolute; margin-top: 420px; width: 122px" />
                     <input class="lite_btn btn_gray" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" disabled="true" style="position: absolute; margin-top: 470px; width: 122px" />
 
                     <svg id="graphS1" width="700" height="500" style="margin-left: 160px"></svg>
@@ -186,7 +188,7 @@
                     <input id="Vmax" style="width: 40px;" />
                     <label for="supramaximal"><strong>Supramaximal Workrate (%)</strong></label>
                     <input id="supramaximal" style="width: 40px;" />
-                    <label for="reqworkload"><strong>Required Speed/Power</strong></label>
+                    <label for="reqworkload" id="reqWUnits"><p id=""></p></label>
                     <input id="reqworkload" style="width: 40px" />
                 </div>
 
@@ -247,7 +249,7 @@
                     <p id="xAxisLabel2" style="text-align: center;"></p>
 
                     <input class="lite_btn btn_green" onclick="s2Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; width: 122px" />
-                    <input class="lite_btn btn_green" onclick="clearGraph('graphS2', true)" name="clear" value="Clear Data" type="button" style="position: absolute; margin-left: 128px;   width: 122px" />
+                    <input class="lite_btn btn_green" onclick="clearGraph('graphS2')" name="clear" value="Clear Graph" type="button" style="position: absolute; margin-left: 128px;   width: 122px" />
                     <input class="lite_btn btn_green" id="move" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-left: 251px;" />
 
                     <br>
