@@ -19,6 +19,7 @@ var lineY1;
 var lineY2;
 var lineX1;
 var workloadData = [];
+var workloadUnits;
 
 /* Second screen variables */
 var numIntervals;
@@ -73,13 +74,23 @@ function changeScreens() {
     var button = document.getElementById("move");
     if (screen1.style.display == 'inline') {
         sex = $('input[name="sex"]:checked').val();
-        setMass(document.getElementById('bodymass').value);
-        
+        setMass(document.getElementById('bodymass').value);     
         var title = document.getElementById("title");
         title.innerHTML = "Anaerobic capacity / MAOD (screen 2)";
         screen1.style.display = 'none';
         screen2.style.display = 'inline';
         button.value = "Previous Screen";
+        
+        workloadUnits = $('input[name="workloadUnits"]:checked').val();    
+        if (workloadUnits == "speed") {
+            var units = document.getElementById("reqWUnits");
+            units.innerHTML = "<strong>Required Speed (kph)</strong>";
+        } else {
+            var units = document.getElementById("reqWUnits");
+            units.innerHTML = "<strong>Required Power (W)</strong>";
+        }
+        
+        
     } else {
         var title = document.getElementById("title");
         title.innerHTML = "Anaerobic capacity / MAOD (screen 1)";
@@ -87,6 +98,8 @@ function changeScreens() {
         screen2.style.display = 'none';
         button.value = "Next Screen";
     }
+    
+
 }
 
 /*
@@ -166,7 +179,7 @@ function getMinimumValue(list) {
 /*
 * Clears the current screen graph and values using jQuery
 */
-function clearGraph(string, button) {
+function clearGraph(string) {
     $("#" + string + "").empty();
 
     // Clears all variables
@@ -194,18 +207,6 @@ function clearGraph(string, button) {
         lineX = 0;
         workloadData = [];
 
-        if (button) {
-            var xList = document.getElementsByClassName("x");
-            var yList = document.getElementsByClassName("y");
-            var bodymass = document.getElementById("bodymass");
-            bodymass.value = "";
-            for (var i = 0; i < xList.length; i++) {
-                xList[i].value = "";
-                yList[i].value = "";
-            }
-        }
-
-
     } else if (string == 'graphS2') {
         vo2MaxValues = [];
         xs2 = [];
@@ -215,17 +216,6 @@ function clearGraph(string, button) {
         $("#results2").text("");
         // also clear percentile graph
         $("#graphS3").empty();
-
-        if (button) {
-            var xList = document.getElementsByClassName("x2");
-            var yList = document.getElementsByClassName("y2");
-            var bodymass = document.getElementById("bodymass");
-            bodymass.value = "";
-            for (var i = 0; i < xList.length; i++) {
-                xList[i].value = "";
-                yList[i].value = "";
-            }
-        }
     }
 
 }
@@ -263,11 +253,19 @@ function regression(x) {
 * Button call from HTML, starts getting data from form
 */
 function s1Input() {
+    
     if (document.getElementById('bodymass').value == "") {
         alert("Please enter a body mass (kg)");
         throw new Error("Please enter a body mass");
+    } else if ((!$('input[name="sex"]:checked').val())) {
+        alert("Please select patient sex");
+        throw new Error("Please select patient sex");
+    } else if ((!$('input[name="workloadUnits"]:checked').val())) {
+        alert("Please select workload units");
+        throw new Error("Please select workload units");      
     }
-    clearGraph('graphS1', false);
+
+    clearGraph('graphS1');
     getList('x');
     getList('y');
     // get the sum of xgrabInput
@@ -437,7 +435,7 @@ function firstGraph() {
 function s2Input() {
     
     reqSpeed();
-    clearGraph('graphS2', false);
+    clearGraph('graphS2');
     getList('x2');
     getList('y2');
 
