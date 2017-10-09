@@ -1,4 +1,3 @@
-[![Known Vulnerabilities](https://snyk.io/test/github/snyk/goof/badge.svg)](https://snyk.io/test/github/ransty/est)
 
 # Exercise Science Toolkit
 This repository is for the EST.
