@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -12,8 +12,22 @@
     <link rel="stylesheet" type="text/css" href="http://115.112.118.252/VirtualEST//assets/css/health.css" />
     <link rel="stylesheet" type="text/css" href="http://115.112.118.252/VirtualEST//assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="graph.css" />
+
+    <style>
+        input.x, input.y {
+            width: 50px;
+            height: 25px;
+            margin-top: 10px;
+        }
+        
+        input.x2, input.y2 {
+            width: 50px;
+            height: 20px;
+        }
+    </style>
     
 </head>
+    
 
 <body>
     <div class="header">
@@ -100,6 +114,7 @@
                                 <a href="#" id="anaerobic_capacity"><img> Anaerobic capacity</a>
                                 <ul class="sub_menu">
                                     <li><a href="http://115.112.118.252/VirtualEST/index.php/Fitness/total_work_done_30s">30 s total work [kJ]</a></li>
+                                    <li><a>MAOD</a></li>
                                 </ul>
                             </li>
 
@@ -129,11 +144,14 @@
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">
                     <label for="bodymass"><strong>Body Mass (kg)</strong></label>
-                    <input id="bodymass" tabindex=1 maxlength=6 class="cus-input" required autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                    <label for="name"><strong>Name</strong></label>
-                    <input id="name" tabindex=2 class="cus-input" ng-model="yourName" />
-                    Female <input type="radio" style="display: inline" name="sex" value="female"> 
-                    Male <input type="radio" style="display: inline" name="sex" value="male">
+                    <label for="name" style="margin-left: 78px"><strong>Name</strong></label>
+                    
+                    <input type="radio" style="display: inline; margin-left: 220px" name="sex" value="female"> Female
+                    <input type="radio" style="display: inline" name="sex" value="male"> Male
+                    
+                    <br />
+                    <input type="text" id="bodymass" style="width: 50px;" tabindex=1 maxlength=6 class="cus-input" required autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    <input type="text" id="name" style="width: 180px; margin-left: 70px" tabindex=2 class="cus-input" ng-model="yourName" />
                 </div>
 
                 <br>
@@ -141,48 +159,49 @@
 
                 <div class="field_row">
                     <ul class="field_24" id="workload" style="position: absolute;">
-                        <label style="margin: 0; padding: 0">Workload</label>
-                        W <input type="radio" style="display: inline" name="workloadUnits" value="power"> 
-                        Kph <input type="radio" style="display: inline" name="workloadUnits" value="speed">
-                        <li><input class="x" style="width: 50px;" tabindex=2 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=4 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=6 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=8 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=10 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=12 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=14 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=16 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=18 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=20 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=22 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="x" style="width: 50px;" tabindex=24 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <label style="margin-bottom: 20px; padding: 0">Workload</label>
+                        
+                        <li><input class="x" type="text" tabindex=2 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=4 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=6 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=8 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=10 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=12 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=14 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=16 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=18 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=20 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=22 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="x" type="text" tabindex=24 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li></li>
+                        <li><input type="radio" style="display: inline" name="workloadUnits" value="power">Watts</li>
+                        <li><input type="radio" style="display: inline" name="workloadUnits" value="speed">Km/hr</li>
                     </ul>
 
                     <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
                         <label style="margin: 0; padding: 0;">VO2 Max</label>
                         <label style="margin: 0; padding: 0; text-align: center;">(L/min)</label>
-                        <li><input class="y" style="width: 50px;" tabindex=3 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=5 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=7 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=9 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=11 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=13 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=15 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=17 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=19 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=21 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=23 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input class="y" style="width: 50px;" tabindex=25 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=3 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=5 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=7 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=9 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=11 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=13 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=15 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=17 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=19 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=21 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=23 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input class="y" type="text" tabindex=25 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                     </ul>
                     <p id="yAxisLabel" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
-
-                    <input class="lite_btn btn_green" onclick="s1Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 370px; width: 122px" />
-                    <input class="lite_btn btn_green" onclick="clearGraph('graphS1', true)" name="clear" value="Clear Data" type="button" style="position: absolute; margin-top: 420px; width: 122px" />
-                    <input class="lite_btn btn_gray" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" disabled="true" style="position: absolute; margin-top: 470px; width: 122px" />
-
                     <svg id="graphS1" width="700" height="500" style="margin-left: 160px"></svg>
                     <p id="xAxisLabel" style="text-align: center;"></p>
+                    
+                    <input class="lite_btn btn_green" onclick="s1Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 40px; margin-left: 0px; width: 122px" />
+                    <input class="lite_btn btn_green" onclick="clearGraph('graphS1', true)" name="clear" value="Clear Data" type="button" style="position: absolute; margin-top: 40px; margin-left: 160px; width: 122px" />
+                    <input class="lite_btn btn_gray" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" disabled="true" style="position: absolute; margin-top: 40px; margin-left: 738px; width: 122px" />
+
                 </div>
             </div>
 
@@ -192,11 +211,11 @@
                     <label for="value"><strong>Time interval (s)</strong></label>
                     <input id="timeInterval" class="cus-input" required style="width: 40px;" maxlength="3" onkeypress="adjIntervalTable(this)" onkeydown="adjIntervalTable(this)" onChange="adjIntervalTable(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <label for="Vmax"><strong>Estimated V02max (L/min)</strong></label>
-                    <input id="Vmax" style="width: 40px;" />
-                    <label for="supramaximal"><strong>Supramaximal Workrate (%)</strong></label>
-                    <input id="supramaximal" style="width: 40px;" />
+                    <input type="text" id="Vmax" style="width: 40px;" />
+                    <label for="supramaximal"><strong>Supramaximal Workrate (%max)</strong></label>
+                    <input type="text" id="supramaximal" style="width: 40px;" />
                     <label for="reqworkload" id="reqWUnits"><p id=""></p></label>
-                    <input id="reqworkload" style="width: 40px" />
+                    <input disabled id="reqworkload" style="width: 40px" />
                 </div>
 
                 <br />
@@ -206,24 +225,24 @@
                     <ul class="field_24" id="interval" style="position: absolute;">
                         <label style="margin: 0; padding: 0;">Interval</label>
                         <label style="margin: 0; padding: 0; text-align: center;">(s)</label>
-                        <li><input disabled class="x2" style="width: 50px;" value="1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="5" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="6" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="7" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="9" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="12" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="13" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="14" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="15" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="16" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="17" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
-                        <li><input disabled class="x2" style="width: 50px;" value="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
+                        <li><input disabled class="x2" type="text" value="1" /></li>
+                        <li><input disabled class="x2" type="text" value="2" /></li>
+                        <li><input disabled class="x2" type="text" value="3" /></li>
+                        <li><input disabled class="x2" type="text" value="4" /></li>
+                        <li><input disabled class="x2" type="text" value="5" /></li>
+                        <li><input disabled class="x2" type="text" value="6" /></li>
+                        <li><input disabled class="x2" type="text" value="7" /></li>
+                        <li><input disabled class="x2" type="text" value="8" /></li>
+                        <li><input disabled class="x2" type="text" value="9" /></li>
+                        <li><input disabled class="x2" type="text" value="10" /></li>
+                        <li><input disabled class="x2" type="text" value="11" /></li>
+                        <li><input disabled class="x2" type="text" value="12" /></li>
+                        <li><input disabled class="x2" type="text" value="13" /></li>
+                        <li><input disabled class="x2" type="text" value="14" /></li>
+                        <li><input disabled class="x2" type="text" value="15" /></li>
+                        <li><input disabled class="x2" type="text" value="16" /></li>
+                        <li><input disabled class="x2" type="text" value="17" /></li>
+                        <li><input disabled class="x2" type="text" value="18" /></li>
 
                         <!--<li></li>-->
                     </ul>
