@@ -444,7 +444,7 @@ function firstGraph() {
 
 
     // Results and labels to display on graph
-    $("#results").html("<div>R&sup2;= " + correlation() + ", Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div>");
+    $("#results").html("<p>Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</p><p>R&sup2;= " + correlation() + "</p>");
     if ($('input[name="workloadUnits"]:checked').val() == "speed") {
         $("#xAxisLabel").text("Workload (Kph)");
     } else {
@@ -769,7 +769,7 @@ function percentileGraph() {
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
         .style("fill", "red")
-        .text(Math.round(rank * 100) / 100 + "%");
+        .text("Ranking " + Math.round(rank * 100) / 100 + "%'ile");
 
     var maodarea = [{
         'x': 0,
