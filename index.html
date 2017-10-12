@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -24,6 +24,20 @@
             width: 50px;
             height: 20px;
         }
+
+        #name, #bodymass {
+            height: 40px;
+
+        }
+
+        input[type='radio']:checked {
+            height: 12px;
+            width: 12px;
+            background: #31475a;
+            border-radius: 60%;
+            content: '';
+        }
+
     </style>
     
 </head>
@@ -145,17 +159,23 @@
                 <div id="input-vals">
                     <label for="bodymass"><strong>Body Mass (kg)</strong></label>
                     <label for="name" style="margin-left: 78px"><strong>Name</strong></label>
-                    
-                    <input type="radio" style="display: inline; margin-left: 220px" name="sex" value="female"> Female
-                    <input type="radio" style="display: inline" name="sex" value="male"> Male
+                    <label for="" style="margin-left: 215px;"><strong>Gender</strong></label>
                     
                     <br />
-                    <input type="text" id="bodymass" style="width: 50px;" tabindex=1 maxlength=6 class="cus-input" required autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                    <input type="text" id="name" style="width: 180px; margin-left: 70px" tabindex=2 class="cus-input" ng-model="yourName" />
+                    <input type="text" id="bodymass" style="width: 50px;" tabindex=1 maxlength=6 required autofocus oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    <input type="text" id="name" style="width: 180px; margin-left: 70px; margin-right: 20px;" tabindex=2 ng-model="yourName" />
+
+                    <div style="display: inline;">
+                        <input type="radio" style="display: none;" id="male" name="sex" value="female"><label for="male"><span style="float: none; margin-right: 8px;"></span>Male</label>
+                        <input type="radio" style="display: none" name="sex" id="female" value="male"><label for="female"><span style="float: none; margin-right: 8px"></span>Female</label>
+                    </div>
+
                 </div>
 
+
+
                 <br>
-                <div id="results" style="text-align: center; "><strong></strong></div>
+
 
                 <div class="field_row">
                     <ul class="field_24" id="workload" style="position: absolute;">
@@ -174,8 +194,8 @@
                         <li><input class="x" type="text" tabindex=22 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="x" type="text" tabindex=24 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li></li>
-                        <li><input type="radio" style="display: inline" name="workloadUnits" value="power">Watts</li>
-                        <li><input type="radio" style="display: inline" name="workloadUnits" value="speed">Km/hr</li>
+                        <li><input type="radio" style="display: none" name="workloadUnits" id="power" value="power"><label for="power" style="margin-top: 10px;"><span style="float: none; margin-top: 10px; margin-right: 8px;"></span>Watts</label></li>
+                        <li><input type="radio" style="display: none" name="workloadUnits" id="speed" value="speed"><label for="speed"><span style="float: none; margin-right: 8px;"></span>Km/hr</label></li>
                     </ul>
 
                     <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
@@ -194,10 +214,12 @@
                         <li><input class="y" type="text" tabindex=23 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="y" type="text" tabindex=25 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                     </ul>
+                    <div id="results" style="text-align: center; "><strong></strong></div>
                     <p id="yAxisLabel" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
                     <svg id="graphS1" width="700" height="500" style="margin-left: 160px"></svg>
                     <p id="xAxisLabel" style="text-align: center;"></p>
                     
+                    <br />
                     <input class="lite_btn btn_green" onclick="s1Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; margin-top: 40px; margin-left: 0px; width: 122px" />
                     <input class="lite_btn btn_green" onclick="clearGraph('graphS1', true)" name="clear" value="Clear Data" type="button" style="position: absolute; margin-top: 40px; margin-left: 160px; width: 122px" />
                     <input class="lite_btn btn_gray" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" disabled="true" style="position: absolute; margin-top: 40px; margin-left: 738px; width: 122px" />
@@ -219,7 +241,7 @@
                 </div>
 
                 <br />
-                <div id="results2" style="text-align: center; "><strong>Results:</strong></div>
+                
 
                 <div class="field_row">
                     <ul class="field_24" id="interval" style="position: absolute;">
@@ -269,7 +291,7 @@
                         <li><input class="y2" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="y2" style="width: 50px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                     </ul>
-
+                    <div id="results2" style="text-align: center; "><strong>Results:</strong></div>
                     <p id="yAxisLabel2" style="position: absolute; margin-left: 115px; margin-top: 250px; transform: rotate(270deg);"></p>
                     <svg id="graphS2" width="700" height="500" style="position: relative; margin-left: 160px"></svg>
                     <p id="xAxisLabel2" style="text-align: center;"></p>
