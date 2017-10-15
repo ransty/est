@@ -12,45 +12,6 @@
     <link rel="stylesheet" type="text/css" href="http://115.112.118.252/VirtualEST//assets/css/health.css" />
     <link rel="stylesheet" type="text/css" href="http://115.112.118.252/VirtualEST//assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="graph.css" />
-
-    <style>
-        input.x, input.y {
-            width: 90px;
-            height: 40px;
-            margin-top: 10px;
-            
-        }
-        
-        input.x2, input.y2 {
-            width: 50px;
-            height: 20px;
-        }
-
-        #name, #bodymass {
-            height: 40px;
-
-        }
-
-        input[type='radio']:checked {
-            height: 12px;
-            width: 12px;
-            background: #31475a;
-            border-radius: 60%;
-            content: '';
-        }
-        
-        .screen1-buttons {
-            margin: auto;
-            margin-top: 20px;
-        }
-        
-        ul {
-            display: inline-block;
-            zoom: 1;
-        }
-
-    </style>
-    
 </head>
     
 
@@ -242,7 +203,7 @@
                     
                     <input class="lite_btn btn_white screen1-buttons" onclick="s1Input()" name="plot" value="Plot" type="button" style="position: absolute; margin-top: 40px; margin-left: 0px; width: 40px" />
                     <input class="lite_btn btn_white screen1-buttons" onclick="clearGraph('graphS1', true)" id="clearbtn" name="clear" value="Clear" type="button" style="position: absolute; margin-top: 40px; margin-left: 350px; width: 45px; visibility: hidden;" />
-                    <input class="lite_btn btn_gray screen1-buttons" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" disabled="true" style="position: absolute; margin-top: 40px; margin-left: 738px; width: 140px; visibility: hidden;" />
+                    <input class="lite_btn btn_gray screen1-buttons" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-top: 40px; margin-left: 738px; width: 140px; visibility: hidden;" />
 
                 </div>
             </div>
@@ -250,16 +211,40 @@
             <div id="screen2" name="screen2" style="display: none" class="right-section right-section_new">
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">
-                    <label for="value"><strong>Time interval (s)</strong></label>
-                    <input id="timeInterval" class="cus-input" required style="width: 40px;" maxlength="3" onkeypress="adjIntervalTable(this)" onkeydown="adjIntervalTable(this)" onChange="adjIntervalTable(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                    <label for="Vmax"><strong>Estimated V02max (L/min)</strong></label>
-                    <input type="text" id="Vmax" style="width: 40px;" />
-                    <label for="supramaximal"><strong>Supramaximal Workrate (%max)</strong></label>
-                    <input type="text" id="supramaximal" style="width: 40px;" />
-                    <label for="reqworkload" id="reqWUnits"><p id=""></p></label>
-                    <input disabled id="reqworkload" style="width: 40px" />
-                </div>
+                    
+                    <div style="display: inline">
+                        <label for="value"><strong>Time interval (s)</strong></label>
+                        <label for="Vmax" style="margin-left: 45px"><strong>Estimated V0<sub>2max</sub>(L/min)</strong></label>
+                        <label for="supramaximal" style="margin-left: 45px"><strong>Supramaximal Workrate (%max)</strong></label>
+                        <label for="tints" style="margin-left: 45px" id="reqWUnits"><p id=""></p></label>
+                    </div>
+                    
+                        <br />
+                        <br />
+                        <select name="tints" id="tints" style="width: 110px; float: left;">
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                            <option value="60">60</option>
+                            <option value="75">75</option>
+                            <option value="90">90</option>
+                            <option value="105">105</option>
+                            <option value="120">120</option>
+                            <option value="135">135</option>
+                            <option value="150">150</option>
+                            <option value="175">175</option>
+                        </select>
+                    <input type="text" id="timeInterval" required style="width: 40px; visibility: hidden; display: none;" maxlength="3" onkeypress="adjIntervalTable(this)" onkeydown="adjIntervalTable(this)" onChange="adjIntervalTable(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                    
+                    
+                    
 
+                    <input type="text" id="Vmax" style="width: 110px; margin-left: 43px" />
+                    <input type="text" id="supramaximal" style="width: 150px; margin-left: 40px;" />
+                    <input type="text" disabled id="reqworkload" style="width: 150px; display: inline-block; margin-left: 42px;" />
+
+                </div>
+                
                 <br />
                 
 
@@ -316,9 +301,25 @@
                     <svg id="graphS2" width="700" height="500" style="position: relative; margin-left: 160px"></svg>
                     <p id="xAxisLabel2" style="text-align: center;"></p>
 
-                    <input class="lite_btn btn_green" onclick="s2Input()" name="plot" value="Plot Graph" type="button" style="position: absolute; width: 122px" />
-                    <input class="lite_btn btn_green" onclick="clearGraph('graphS2', true)" name="clear" value="Clear Data" type="button" style="position: absolute; margin-left: 128px;   width: 122px" />
-                    <input class="lite_btn btn_green" id="move" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-left: 251px;" />
+                                        <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    
+                    <input class="lite_btn btn_white" onclick="s2Input()" name="plot" value="Plot" type="button" style="position: absolute; width: 40px" />
+                    <input class="lite_btn btn_white" onclick="clearGraph('graphS2', true)" name="clear" value="Clear" type="button" style="position: absolute; margin-left: 350px;   width: 45px" />
+                    <input class="lite_btn btn_white" id="move" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-left: 738px; width: 140px;" />
 
                     <svg id="graphS3" width="100" height="300" style="position: relative;"></svg>
 

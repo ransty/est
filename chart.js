@@ -72,7 +72,6 @@ function changeScreens() {
     var screen1 = document.getElementById("screen1");
     var screen2 = document.getElementById("screen2");
     var button = document.getElementById("move");
-    var clear = document.getElementById("clear");
     if (screen1.style.display == 'inline') {
         sex = $('input[name="sex"]:checked').val();
         setMass(document.getElementById('bodymass').value);     
@@ -81,8 +80,6 @@ function changeScreens() {
         screen1.style.display = 'none';
         screen2.style.display = 'inline';
         button.value = "Previous Screen";
-        
-        
         workloadUnits = $('input[name="workloadUnits"]:checked').val();    
         if (workloadUnits == "speed") {
             var units = document.getElementById("reqWUnits");
@@ -90,9 +87,7 @@ function changeScreens() {
         } else {
             var units = document.getElementById("reqWUnits");
             units.innerHTML = "<strong>Required Power (W)</strong>";
-        }
-        
-        
+        } 
     } else {
         var title = document.getElementById("title");
         title.innerHTML = "Anaerobic capacity / MAOD (screen 1)";
@@ -413,8 +408,8 @@ function firstGraph() {
     main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
     var g = main.append("svg:g");
-
-    g.selectAll("scatter-dots")
+    
+        g.selectAll("scatter-dots")
         .data(data)
         .enter().append("svg:circle")
         .attr("cx", function (d, i) { return x(d[0]); })
@@ -424,8 +419,8 @@ function firstGraph() {
         .text(function (d) {
             return d;
         });
-
-    var lineFunc = d3.svg.line()
+    
+        var lineFunc = d3.svg.line()
         .x(function (d) {
             return x(d.x);
         })
@@ -433,9 +428,11 @@ function firstGraph() {
             return y(d.y);
         })
         .interpolate('linear');
+    
+    
     g.append('svg:path')
         .attr('d', lineFunc(lineData))
-        .attr('stroke', 'red')
+        .attr('stroke', '#cec3e3')
         .attr('stroke-width', 2)
         .attr('fill', 'none')
         .append("svg:title") // tooltip

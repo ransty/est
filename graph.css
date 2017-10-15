@@ -24,7 +24,7 @@ sub {
 }
 
 .axis path, .axis line {
-    stroke: black;
+    stroke: #cec3e3;
     outline-width: medium;
     shape-rendering: crispEdges;
 }
@@ -55,5 +55,41 @@ sub {
 }
 
 circle {
-    fill: steelblue;
+    fill: black;
+    position: absolute;
+    z-index: 20;
 }
+
+        input.x, input.y {
+            width: 90px;
+            height: 40px;
+            
+        }
+        
+        input.x2, input.y2 {
+            width: 90px;
+            height: 40px;
+        }
+
+        #name, #bodymass {
+            height: 40px;
+
+        }
+
+        input[type='radio']:checked {
+            height: 12px;
+            width: 12px;
+            background: #31475a;
+            border-radius: 60%;
+            content: '';
+        }
+        
+        .screen1-buttons {
+            margin: auto;
+            margin-top: 20px;
+        }
+        
+        ul {
+            display: inline-block;
+            zoom: 1;
+        }
