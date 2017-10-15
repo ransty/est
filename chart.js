@@ -72,6 +72,7 @@ function changeScreens() {
     var screen1 = document.getElementById("screen1");
     var screen2 = document.getElementById("screen2");
     var button = document.getElementById("move");
+    var clear = document.getElementById("clear");
     if (screen1.style.display == 'inline') {
         sex = $('input[name="sex"]:checked').val();
         setMass(document.getElementById('bodymass').value);     
@@ -80,6 +81,7 @@ function changeScreens() {
         screen1.style.display = 'none';
         screen2.style.display = 'inline';
         button.value = "Previous Screen";
+        
         
         workloadUnits = $('input[name="workloadUnits"]:checked').val();    
         if (workloadUnits == "speed") {
@@ -131,9 +133,8 @@ function getList(htmlClass) {
 */
 function freeButton() {
     // re-enables the button
-    $("#nxtbtn").prop('disabled', false);
-    $("#nxtbtn").removeClass('btn_gray');
-    $("#nxtbtn").addClass('btn_green');
+    $("#nxtbtn").css("visibility", "visible");
+    $("#clearbtn").css("visibility", "visible");
 }
 
 /*
@@ -332,7 +333,7 @@ function s1Input() {
 function firstGraph() {
     var margin = { top: 20, right: 20, bottom: 20, left: 50 }
         , width = 700 - margin.left - margin.right
-        , height = 500 - margin.top - margin.bottom;
+        , height = 700 - margin.top - margin.bottom;
 
     /* Determines start & end X&Y coordinates to plot line within bounds of axis */
     var xP1;
@@ -452,6 +453,7 @@ function firstGraph() {
     }
     
     $("#yAxisLabel").text("V02 Max (L/Min)");
+    
 }
 
 /*
@@ -477,7 +479,7 @@ function s2Input() {
 function secondGraph() {
     var margin = { top: 20, right: 20, bottom: 20, left: 50 }
         , width = 700 - margin.left - margin.right
-        , height = 500 - margin.top - margin.bottom;
+        , height = 700 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
         .domain([0, 180])
