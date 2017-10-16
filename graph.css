@@ -24,8 +24,8 @@ sub {
 }
 
 .axis path, .axis line {
-    stroke: #cec3e3;
-    outline-width: medium;
+    stroke: black;
+    outline-width: thick;
     shape-rendering: crispEdges;
 }
 
@@ -60,16 +60,10 @@ circle {
     z-index: 20;
 }
 
-input.y {
+input.x, input.y {
     width: 90px;
     height: 40px;
     margin-top: 10px;
-}
-
-input.x {
-    width: 90px;
-    height: 40px;
-    margin-top: 11px;
 }
 
 input.x2, input.y2 {

@@ -138,8 +138,8 @@
                     <input type="text" id="name" style="width: 190px; margin-left: 70px; margin-right: 20px;" tabindex=2 ng-model="yourName" />
 
                     <div style="display: inline;">
-                        <input type="radio" style="display: none;" id="male" name="sex" value="female"><label for="male" ><span style="float: none; margin-right: 8px;"></span>Male</label>
-                        <input type="radio" style="display: none;" name="sex" id="female" value="male"><label for="female" ><span style="float: none; margin-right: 8px; margin-left: 5px;"></span>Female</label>
+                        <input type="radio" style="display: none;" id="male" name="sex" value="female"><label for="male" ><span style="float: none; margin-right: 8px;"></span><strong>Male</strong></label>
+                        <input type="radio" style="display: none;" name="sex" id="female" value="male"><label for="female" ><span style="float: none; margin-right: 8px; margin-left: 5px;"></span><strong>Female</strong></label>
                     </div>
 
                 </div>
@@ -150,8 +150,8 @@
 
 
                 <div class="field_row">
-                    <ul class="field_24" id="workload" style="position: absolute;">
-                        <label style="margin-bottom: 20px; padding: 0">Workload</label>
+                    <ul class="field_24" id="workload" style="position: absolute; margin-top: 10px;">
+                        <label style="margin-bottom: 0; padding-bottom: 21px; text-align: center">Workload</label>
                         
                         <li><input class="x" type="text" tabindex=2 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="x" type="text" tabindex=4 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
@@ -166,11 +166,11 @@
                         <li><input class="x" type="text" tabindex=22 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="x" type="text" tabindex=24 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li></li>
-                        <li><input type="radio" style="display: none" name="workloadUnits" id="power" value="power"><label for="power" style="margin-top: 10px;"><span style="float: none; margin-right: 8px;"></span>Watts</label></li>
-                        <li><input type="radio" style="display: none" name="workloadUnits" id="speed" value="speed"><label for="speed"><span style="float: none; margin-right: 8px;"></span>Km/hr</label></li>
+                        <li><input type="radio" style="display: none" name="workloadUnits" id="power" value="power"><label for="power" style="margin-top: 10px;"><span style="float: none; margin-right: 8px;"></span><strong>Watts</strong></label></li>
+                        <li><input type="radio" style="display: none" name="workloadUnits" id="speed" value="speed"><label for="speed"><span style="float: none; margin-right: 8px;"></span><strong>Km/hr</strong></label></li>
                     </ul>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
+                    <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px; margin-top: 10px;">
                         <label style="margin: 0; padding: 0; text-align: center">VO<sub>2max</sub><br />
                         (L/min)</label>
                         <li><input class="y" type="text" tabindex=3 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
@@ -186,17 +186,19 @@
                         <li><input class="y" type="text" tabindex=23 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                         <li><input class="y" type="text" tabindex=25 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></li>
                     </ul>
-                    <div id="results" style="text-align: center; "><strong></strong></div>
-                    <p id="yAxisLabel" style="position: absolute; margin-left: 155px; margin-top: 330px; transform: rotate(270deg);"></p>
-                    <svg id="graphS1" width="700" height="700" style="margin-left: 200px"></svg>
-                    <p id="xAxisLabel" style="text-align: center; margin-left: 200px"></p>
+
+                    <div id="results" style="text-align: center; margin-right: 200px; margin-top: -20px;"><strong></strong></div>
+                    <p id="yAxisLabel" style="position: absolute; margin-left: 210px; margin-top: 330px; transform: rotate(270deg);"></p>
+                    <svg id="graphS1" width="700" height="700" style="margin-left: 250px; margin-top: -%5;"></svg>
+                    <p id="xAxisLabel" style="text-align: center; margin-left: 345px"></p>
+                    <br />
                     <input class="lite_btn btn_white screen1-buttons" onclick="s1Input()" name="plot" value="Plot" type="button" style="position: absolute; margin-top: 40px; margin-left: 0px; width: 40px" />
                     <input class="lite_btn btn_white screen1-buttons" onclick="clearGraph('graphS1', true)" id="clearbtn" name="clear" value="Clear" type="button" style="position: absolute; margin-top: 40px; margin-left: 350px; width: 45px; visibility: hidden;" />
                     <input class="lite_btn btn_gray screen1-buttons" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-top: 40px; margin-left: 738px; width: 140px; visibility: hidden;" />
 
                 </div>
             </div>
-
+            <div><br /></div>
             <div id="screen2" name="screen2" style="display: none" class="right-section right-section_new">
                 <div class="right-head">Maximal Accumulated Oxygen Deficit (MAOD)</div>
                 <div id="input-vals">

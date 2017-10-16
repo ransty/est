@@ -442,14 +442,14 @@ function firstGraph() {
 
 
     // Results and labels to display on graph
-    $("#results").html("<p>Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</p><p>R&sup2;= " + correlation() + "</p>");
+    $("#results").html("<pre><strong>Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</strong></pre><div style=\"margin-left: -55px;\"><strong>R&sup2;= " + correlation() + "</strong></div>");
     if ($('input[name="workloadUnits"]:checked').val() == "speed") {
         $("#xAxisLabel").text("Workload (Kph)");
     } else {
         $("#xAxisLabel").text("Workload (W)");
     }
     
-    $("#yAxisLabel").text("V02 Max (L/Min)");
+    $("#yAxisLabel").html("V0<sub>2</sub> (L/Min)");
     
 }
 
