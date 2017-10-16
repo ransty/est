@@ -60,36 +60,41 @@ circle {
     z-index: 20;
 }
 
-        input.x, input.y {
-            width: 90px;
-            height: 40px;
-            
-        }
-        
-        input.x2, input.y2 {
-            width: 90px;
-            height: 40px;
-        }
+input.y {
+    width: 90px;
+    height: 40px;
+    margin-top: 10px;
+}
 
-        #name, #bodymass {
-            height: 40px;
+input.x {
+    width: 90px;
+    height: 40px;
+    margin-top: 11px;
+}
 
-        }
+input.x2, input.y2 {
+    width: 90px;
+    height: 40px;
+}
 
-        input[type='radio']:checked {
-            height: 12px;
-            width: 12px;
-            background: #31475a;
-            border-radius: 60%;
-            content: '';
-        }
-        
-        .screen1-buttons {
-            margin: auto;
-            margin-top: 20px;
-        }
-        
-        ul {
-            display: inline-block;
-            zoom: 1;
-        }
+#name, #bodymass {
+    height: 40px;
+}
+
+input[type='radio']:checked {
+    height: 12px;
+    width: 12px;
+    background: #31475a;
+    border-radius: 60%;
+    content: '';
+}
+
+.screen1-buttons {
+    margin: auto;
+    margin-top: 20px;
+}
+
+ul {
+    display: inline-block;
+    zoom: 1;
+}

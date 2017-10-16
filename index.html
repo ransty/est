@@ -138,8 +138,8 @@
                     <input type="text" id="name" style="width: 190px; margin-left: 70px; margin-right: 20px;" tabindex=2 ng-model="yourName" />
 
                     <div style="display: inline;">
-                        <input type="radio" style="display: none;" id="male" name="sex" value="female"><label for="male"><span style="float: none; margin-right: 8px;"></span>Male</label>
-                        <input type="radio" style="display: none;" name="sex" id="female" value="male"><label for="female"><span style="float: none; margin-right: 8px; margin-left: 5px"></span>Female</label>
+                        <input type="radio" style="display: none;" id="male" name="sex" value="female"><label for="male" ><span style="float: none; margin-right: 8px;"></span>Male</label>
+                        <input type="radio" style="display: none;" name="sex" id="female" value="male"><label for="female" ><span style="float: none; margin-right: 8px; margin-left: 5px;"></span>Female</label>
                     </div>
 
                 </div>
@@ -169,6 +169,7 @@
                         <li><input type="radio" style="display: none" name="workloadUnits" id="power" value="power"><label for="power" style="margin-top: 10px;"><span style="float: none; margin-right: 8px;"></span>Watts</label></li>
                         <li><input type="radio" style="display: none" name="workloadUnits" id="speed" value="speed"><label for="speed"><span style="float: none; margin-right: 8px;"></span>Km/hr</label></li>
                     </ul>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <ul id="vo2" class="field_24" style="position: absolute; margin-left: 80px">
                         <label style="margin: 0; padding: 0; text-align: center">VO<sub>2max</sub><br />
                         (L/min)</label>
@@ -189,18 +190,6 @@
                     <p id="yAxisLabel" style="position: absolute; margin-left: 155px; margin-top: 330px; transform: rotate(270deg);"></p>
                     <svg id="graphS1" width="700" height="700" style="margin-left: 200px"></svg>
                     <p id="xAxisLabel" style="text-align: center; margin-left: 200px"></p>
-                    
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    
                     <input class="lite_btn btn_white screen1-buttons" onclick="s1Input()" name="plot" value="Plot" type="button" style="position: absolute; margin-top: 40px; margin-left: 0px; width: 40px" />
                     <input class="lite_btn btn_white screen1-buttons" onclick="clearGraph('graphS1', true)" id="clearbtn" name="clear" value="Clear" type="button" style="position: absolute; margin-top: 40px; margin-left: 350px; width: 45px; visibility: hidden;" />
                     <input class="lite_btn btn_gray screen1-buttons" id="nxtbtn" name="move" onclick="changeScreens()" value="Next Screen" type="button" style="position: absolute; margin-top: 40px; margin-left: 738px; width: 140px; visibility: hidden;" />
