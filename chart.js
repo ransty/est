@@ -96,7 +96,6 @@ function changeScreens() {
         button.value = "Next Screen";
     }
     
-
 }
 
 /*
@@ -178,7 +177,7 @@ function getMinimumValue(list) {
 function clearGraph(string, button) {
     $("#" + string + "").empty();
 
-    // Clears all variables
+    // Clears all variables on Screen 1
     if (string == 'graphS1') {
         xInput = 0;
         yInput = 0;
@@ -208,12 +207,26 @@ function clearGraph(string, button) {
             var yList = document.getElementsByClassName("y");
             var bodymass = document.getElementById("bodymass");
             bodymass.value = "";
+            var name = document.getElementById("name");
+            name.value = "";
+            
+            var female = document.getElementById("female");
+            female.checked = false;
+            var male = document.getElementById("male");
+            male.checked = false;
+            
+            var speed = document.getElementById("speed");
+            speed.checked = false;
+            var power = document.getElementById("power");
+            power.checked = false;            
+            
             for (var i = 0; i < xList.length; i++) {
                 xList[i].value = "";
                 yList[i].value = "";
             }
         }
 
+        // Clears all values on Screen 2
     } else if (string == 'graphS2') {
         vo2MaxValues = [];
         xs2 = [];
@@ -223,14 +236,20 @@ function clearGraph(string, button) {
         $("#results2").text("");
         // also clear percentile graph
         $("#graphS3").empty();
+        
+
 
         if (button) {
             var yList = document.getElementsByClassName("y2");
-            var bodymass = document.getElementById("bodymass");
-            bodymass.value = "";
             for (var i = 0; i < yList.length; i++) {
                 yList[i].value = "";
             }
+            var Vmax = document.getElementById("Vmax");
+            Vmax.value = "";
+            var supramaximal = document.getElementById("supramaximal");
+            supramaximal.value = "";
+            var reqworkload = document.getElementById("reqworkload");
+            reqworkload.value = "";
         }
     }
 
@@ -442,7 +461,7 @@ function firstGraph() {
 
 
     // Results and labels to display on graph
-    $("#results").html("<pre><strong><div style=\"margin-left: -5px;\">Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div></strong></pre><pre><div style=\"margin-left: -120px;\"><strong>R&sup2;= " + correlation() + "</strong></div></pre>");
+    $("#results").html("<strong><div style=\"margin-left: -60px;\">Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div></strong><div style=\"margin-left: -120px;\"><strong>R&sup2;= " + correlation() + "</strong></div>");
     if ($('input[name="workloadUnits"]:checked').val() == "speed") {
         $("#xAxisLabel").text("Workload (Kph)");
     } else {
@@ -503,7 +522,7 @@ function secondGraph() {
         .scale(x)
         .orient('bottom')
         .ticks(5)
-        .tickValues(d3.range(0, width, 15))
+        .tickValues(d3.range(0, width, intervalLength))
         .innerTickSize(-height)
         .outerTickSize(0)
         .tickPadding(10);
@@ -526,9 +545,9 @@ function secondGraph() {
         .attr('class', 'y axis')
         .call(yAxis);
 
-    // Draw line on right-side of axis
-    var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
-    main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
+//    // Draw line on right-side of axis
+//    var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
+//    main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
     var g = main.append("svg:g");
 
@@ -581,8 +600,9 @@ function secondGraph() {
         .attr("transform", "translate(5," + y(lineData[1].y + 0.2) + ")")
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
-        .style("fill", "red")
-        .text("Oxygen Required " + (vo2max * workrate / 100) + " (L/min)");
+        .style("fill", "black")
+        .style("font-weight", "bold")
+        .text("Oxygen Required " + Math.round(O2req * 10) / 10 + " (L/min)");
 
     calcMAOD();
 
@@ -630,7 +650,6 @@ function calcMAOD() {
     maod = Math.round(maod / bodyMass * 10) / 10;
 
     percentileGraph();
-
 }
 
 /*
@@ -672,12 +691,13 @@ function setMass(mass) {
 function reqSpeed() {
     vo2max = parseFloat(document.getElementById('Vmax').value);
     workrate = parseFloat(document.getElementById('supramaximal').value);
+    
     O2req = vo2max * workrate / 100;
-
     reqwork = ((O2req - intercept) / slope);
 
+    
     var d = document.getElementById('reqworkload');
-    d.value = reqwork;
+    d.value = (Math.round(reqwork * 10) / 10);
 }
 
 function percentileGraph() {
@@ -779,10 +799,10 @@ function percentileGraph() {
     }];
 
     // fill up to line
-    g.selectAll(".bar")
+    g.selectAll(".bar2")
         .data(maodarea)
         .enter().append("rect")
-        .attr("class", "bar")
+        .attr("class", "bar2")
         .attr("x", 0)
         .attr("y", function (d) { return y(d.y); })
         .attr("width", function (d) { return x(d.x); })
