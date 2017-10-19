@@ -191,9 +191,11 @@ function clearGraph(string, button) {
         sumY2 = 0;
         sumX2 = 0;
         sumXY = 0;
-        $("#xAxisLabel").text("");
+        $("#xAxisLabel").text("Workload (Kph)");
+        $("#xAxisLabel").css("opacity", "0.0");
         $("#yAxisLabel").text("");
-        $("#results").text("");
+        $("#results").html("<strong><div style=\"margin-left: -73px;\">Y = </div></strong><div style=\"margin-left: -120px;\"><strong>R&sup2;= </strong></div>");
+        $("#results").css("opacity", "0.0");
         xFinal = [];
         yFinal = [];
         lineY1 = 0;
@@ -231,9 +233,11 @@ function clearGraph(string, button) {
         vo2MaxValues = [];
         xs2 = [];
         ys2 = [];
-        $("#xAxisLabel2").text("");
+        $("#xAxisLabel2").text("Graph");
+        $("#xAxisLabel2").css("opacity", "0.0");
         $("#yAxisLabel2").text("");
-        $("#results2").text("");
+        $("#results2").text("Result");
+        $("#results2").css("opacity", "0.0");
         // also clear percentile graph
         $("#graphS3").empty();
 
@@ -345,6 +349,7 @@ function s1Input() {
 * like x-intercept, y-intercept, slope etc
 */
 function firstGraph() {
+    $("#xAxisLabel").css("opacity", "1.0");
     var margin = { top: 20, right: 20, bottom: 20, left: 50 }
         , width = 700 - margin.left - margin.right
         , height = 700 - margin.top - margin.bottom;
@@ -461,6 +466,7 @@ function firstGraph() {
 
 
     // Results and labels to display on graph
+    $("#results").css("opacity", "1.0");
     $("#results").html("<strong><div style=\"margin-left: -73px;\">Y = " + Math.round(slope * 1000) / 1000 + "X + " + Math.round(intercept * 1000) / 1000 + "</div></strong><div style=\"margin-left: -120px;\"><strong>R&sup2;= " + correlation() + "</strong></div>");
     if ($('input[name="workloadUnits"]:checked').val() == "speed") {
         $("#xAxisLabel").text("Workload (Kph)");
@@ -487,6 +493,7 @@ function s2Input() {
     }
 
     secondGraph();
+    $("#xAxisLabel2").css("opacity", "1");
 }
 
 /*
@@ -608,6 +615,7 @@ function secondGraph() {
 
     // Results and label to display on graph
     $("#results2").text("MOAD: " + maod + " mL/kg O2");
+    $("#results2").css("opacity", "1.0");
     $("#xAxisLabel2").text("Time Interval (s)");
     $("#yAxisLabel2").text("V02 Max (L/Min)");
 }
