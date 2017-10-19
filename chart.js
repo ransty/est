@@ -599,7 +599,7 @@ function secondGraph() {
         .interpolate('linear');
     g.append('svg:path')
         .attr('d', lineFunc(lineData))
-        .attr('stroke', 'red')
+        .attr('stroke', 'black')
         .attr('stroke-width', 2)
         .attr('fill', 'none');
 

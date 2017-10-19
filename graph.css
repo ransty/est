@@ -1,4 +1,4 @@
-div.tooltip {
+﻿div.tooltip {
     position: absolute;
     text-align: center;
     width: 100px;
@@ -31,7 +31,7 @@ sub {
 
 .axis text {
     font-family: 'Arial';
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .tick {
