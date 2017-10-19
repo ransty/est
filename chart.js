@@ -612,6 +612,7 @@ function secondGraph() {
 
     // Results and label to display on graph
     $("#results2").text("MOAD: " + maod + " mL/kg O2");
+    $("#results2").css("opacity", "1.0");
     $("#xAxisLabel2").text("Time Interval (s)");
     $("#yAxisLabel2").text("V02 (L/Min)");
 }
