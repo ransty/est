@@ -509,7 +509,7 @@ function secondGraph() {
         .range([0, width]);
 
     var y = d3.scale.linear()
-        .domain([0, 6])
+        .domain([0, 7])
         .range([height, 0]);;
 
     var chart = d3.select('#graphS2')
@@ -543,6 +543,7 @@ function secondGraph() {
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient('left')
+        .ticks(14)
         .innerTickSize(-width)
         .outerTickSize(0)
         .tickPadding(10);
@@ -551,10 +552,6 @@ function secondGraph() {
         .attr('transform', 'translate(0,0)')
         .attr('class', 'y axis')
         .call(yAxis);
-
-    //    // Draw line on right-side of axis
-    //    var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
-    //    main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
     var g = main.append("svg:g");
 
@@ -567,9 +564,9 @@ function secondGraph() {
         .data(maodarea)
         .enter().append("rect")
         .attr("class", "bar2")
-        .attr("x", 0)
+        .attr("x", 1)
         .attr("y", function (d) { return y(d.y); })
-        .attr("width", function (d) { return x(d.x); })
+        .attr("width", function (d) { return x(d.x) - 1; })
         .attr("height", function (d) { return height - y(d.y); });
 
     g.selectAll(".bar")
@@ -615,9 +612,8 @@ function secondGraph() {
 
     // Results and label to display on graph
     $("#results2").text("MOAD: " + maod + " mL/kg O2");
-    $("#results2").css("opacity", "1.0");
     $("#xAxisLabel2").text("Time Interval (s)");
-    $("#yAxisLabel2").text("V02 Max (L/Min)");
+    $("#yAxisLabel2").text("V02 (L/Min)");
 }
 
 
@@ -710,10 +706,10 @@ function reqSpeed() {
 
 function percentileGraph() {
     var rank = calcPercentile(sex);
-
-    var margin = { top: 20, right: 20, bottom: 20, left: 50 }
-        , width = 100 - margin.left - margin.right
-        , height = 300 - margin.top - margin.bottom;
+    
+    var margin = { top: 20, right: 20, bottom: 20, left: 70 }
+        , width = 150 - margin.left - margin.right
+        , height = 700 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
         .domain([0, 1])
@@ -734,6 +730,7 @@ function percentileGraph() {
         .attr('width', width)
         .attr('height', height)
         .attr('class', 'main')
+    
 
     // Draw the X-axis
     var xAxis = d3.svg.axis()
@@ -754,10 +751,10 @@ function percentileGraph() {
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient('left')
-        .innerTickSize(-width)
-        .outerTickSize(0)
-        .tickPadding(10);
-
+        .ticks(0)
+        .innerTickSize(0)
+        .outerTickSize(0);
+    
     main.append('g')
         .attr('transform', 'translate(0,0)')
         .attr('class', 'main axis date')
@@ -767,36 +764,13 @@ function percentileGraph() {
     var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
     main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
+    // Draw line on top of axis
+    var xAxisTop = d3.svg.axis().outerTickSize(0).scale(x).orient("top").ticks(0);
+    main.append("g").attr("class", "x axis").attr("transform", "translate(0, " + height).call(xAxisTop);
+
+    
     var g = main.append("svg:g");
 
-    var lineData = [{
-        'x': 0,
-        'y': rank
-    }, {
-        'x': 1,
-        'y': rank
-    }];
-
-    var lineFunc = d3.svg.line()
-        .x(function (d) {
-            return x(d.x);
-        })
-        .y(function (d) {
-            return y(d.y);
-        })
-        .interpolate('linear');
-    g.append('svg:path')
-        .attr('d', lineFunc(lineData))
-        .attr('stroke', 'red')
-        .attr('stroke-width', 2)
-        .attr('fill', 'none');
-
-    g.append("text")
-        .attr("transform", "translate(5," + y(lineData[0].y + 2.7) + ")")
-        .attr("dy", ".35em")
-        .attr("text-anchor", "start")
-        .style("fill", "red")
-        .text("Ranking " + Math.round(rank * 100) / 100 + "%'ile");
 
     var maodarea = [{
         'x': 0,
@@ -806,15 +780,18 @@ function percentileGraph() {
         'y': rank
     }];
 
-    // fill up to line
+    // Fill graph up to percentile rank
     g.selectAll(".bar2")
         .data(maodarea)
         .enter().append("rect")
         .attr("class", "bar2")
-        .attr("x", 0)
+        .attr("x", 1)
         .attr("y", function (d) { return y(d.y); })
-        .attr("width", function (d) { return x(d.x); })
+        .attr("width", function (d) { return x(d.x) - 1; })
         .attr("height", function (d) { return height - y(d.y); });
+
+    //Label axis
+    $("#yAxisLabel3").text("Ranking %'ile");
 
 }
 
