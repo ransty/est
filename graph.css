@@ -1,4 +1,4 @@
-﻿div.tooltip {
+div.tooltip {
     position: absolute;
     text-align: center;
     width: 100px;
@@ -39,18 +39,13 @@ sub {
 }
 
 .bar {
-    outline-style: solid;
-    outline-width: thin;
-    outline-color: black;
-    fill: steelblue;
+    fill: #f2f2f2;
+    opacity: 0.7;
 }
 
 .bar2 {
     /* margin left: 10px */
-    fill: #EAFFEF;
-    outline-color: black;
-    outline-style: solid;
-    outline-width: thin;
+    fill: #c5efdb;
     opacity: 0.9;
 }
 
