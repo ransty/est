@@ -240,8 +240,10 @@ function clearGraph(string, button) {
         $("#results2").css("opacity", "0.0");
         // also clear percentile graph
         $("#graphS3").empty();
+        $("#percent").css("opacity", "0.0");
+        $("#percent").text("99.9%");
 
-
+        $("#yAxisLabel3").text("");
 
         if (button) {
             var yList = document.getElementsByClassName("y2");
@@ -474,7 +476,7 @@ function firstGraph() {
         $("#xAxisLabel").text("Workload (W)");
     }
 
-    $("#yAxisLabel").html("V0<sub>2</sub> (L/Min)");
+    $("#yAxisLabel").html("V0<sub>2</sub> (L/min)");
 
 }
 
@@ -565,7 +567,7 @@ function secondGraph() {
         .enter().append("rect")
         .attr("class", "bar2")
         .attr("x", 1)
-        .attr("y", function (d) { return y(d.y); })
+        .attr("y", function (d) { return y(d.y) - 1; })
         .attr("width", function (d) { return x(d.x) - 1; })
         .attr("height", function (d) { return height - y(d.y); });
 
@@ -574,7 +576,7 @@ function secondGraph() {
         .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function (d) { return x(d.x - intervalLength); })
-        .attr("y", function (d) { return y(d.y); })
+        .attr("y", function (d) { return y(d.y) - 1; })
         .attr("width", width / numIntervals)
         .attr("height", function (d) { return height - y(d.y); });
 
@@ -597,7 +599,7 @@ function secondGraph() {
     g.append('svg:path')
         .attr('d', lineFunc(lineData))
         .attr('stroke', 'black')
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 1)
         .attr('fill', 'none');
 
     g.append("text")
@@ -611,10 +613,10 @@ function secondGraph() {
     calcMAOD();
 
     // Results and label to display on graph
-    $("#results2").text("MOAD: " + maod + " mL/kg O2");
+    $("#results2").html("MOAD = <strong>" + maod + "</strong> mL O<sub>2</sub> eq/kg");
     $("#results2").css("opacity", "1.0");
     $("#xAxisLabel2").text("Time Interval (s)");
-    $("#yAxisLabel2").text("V02 (L/Min)");
+    $("#yAxisLabel2").text("V02 (L/min)");
 }
 
 
@@ -788,11 +790,13 @@ function percentileGraph() {
         .attr("class", "bar2")
         .attr("x", 1)
         .attr("y", function (d) { return y(d.y); })
-        .attr("width", function (d) { return x(d.x) - 1; })
+        .attr("width", function (d) { return x(d.x) - 2; })
         .attr("height", function (d) { return height - y(d.y); });
 
     //Label axis
     $("#yAxisLabel3").text("Ranking %'ile");
+    $("#percent").html("<strong>"+ (Math.round(rank * 10) / 10) + "%</strong>");
+    $("#percent").css("opacity", "1.0");
 
 }
 
