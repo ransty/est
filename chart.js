@@ -73,14 +73,24 @@ function changeScreens() {
     var screen2 = document.getElementById("screen2");
     var button = document.getElementById("move");
     if (screen1.style.display == 'inline') {
+        
+        if (document.getElementById('bodymass').value == "") {
+            alert("Please enter a body mass (kg)");
+            throw new Error("Please enter a body mass");
+        } else if ((!$('input[name="sex"]:checked').val())) {
+            alert("Please select patient sex");
+            throw new Error("Please select patient sex");
+        }
         sex = $('input[name="sex"]:checked').val();
         setMass(document.getElementById('bodymass').value);
+        
         var title = document.getElementById("title");
         title.innerHTML = "Anaerobic capacity / MAOD (screen 2)";
         screen1.style.display = 'none';
         screen2.style.display = 'inline';
         button.value = "Previous Screen";
         workloadUnits = $('input[name="workloadUnits"]:checked').val();
+        
         if (workloadUnits == "speed") {
             var units = document.getElementById("reqWUnits");
             units.innerHTML = "<strong>Required Speed (kph)</strong>";
@@ -88,6 +98,7 @@ function changeScreens() {
             var units = document.getElementById("reqWUnits");
             units.innerHTML = "<strong>Required Power (W)</strong>";
         }
+        
     } else {
         var title = document.getElementById("title");
         title.innerHTML = "Anaerobic capacity / MAOD (screen 1)";
@@ -380,7 +391,7 @@ function firstGraph() {
     var data = workloadData;
 
     var x = d3.scale.linear()
-        .domain([0, lineX2 + 5])
+        .domain([0, lineX2])
         .range([0, width]);
 
     var y = d3.scale.linear()
@@ -429,9 +440,6 @@ function firstGraph() {
         .attr('class', 'main axis date')
         .call(yAxis);
 
-    // Draw line on right-side of graph
-    var yAxisRight = d3.svg.axis().outerTickSize(0).scale(y).orient("right").ticks(0);
-    main.append("g").attr("class", "y axis").attr("transform", "translate(" + width + ", 0)").call(yAxisRight);
 
     var g = main.append("svg:g");
 
@@ -484,7 +492,15 @@ function firstGraph() {
 * Button call from HTML, starts getting data from form
 */
 function s2Input() {
-
+    
+    if (document.getElementById('Vmax').value == "") {
+        alert("Please enter Estimated VO2max (L/min)");
+        throw new Error("Please enter a Estimated VO2max (L/min)");
+    } else if (document.getElementById('supramaximal').value == "") {
+        alert("Please enter Supramaximal Workrate (%max)");
+        throw new Error("Please enter Supramaximal Workrate (%max)");
+    }
+    
     reqSpeed();
     clearGraph('graphS2', false);
     getList('x2');
@@ -608,7 +624,7 @@ function secondGraph() {
         .attr("text-anchor", "start")
         .style("fill", "black")
         .style("font-weight", "bold")
-        .text("Oxygen Required " + Math.round(O2req * 10) / 10 + " (L/min)");
+        .text("Oxygen Required " + Math.round(O2req * 100) / 100 + " L/min");
 
     calcMAOD();
 
@@ -616,7 +632,7 @@ function secondGraph() {
     $("#results2").html("MOAD = <strong>" + maod + "</strong> mL O<sub>2</sub> eq/kg");
     $("#results2").css("opacity", "1.0");
     $("#xAxisLabel2").text("Time Interval (s)");
-    $("#yAxisLabel2").text("V02 (L/min)");
+    $("#yAxisLabel2").html("V0<sub>2</sub> (L/min)");
 }
 
 
@@ -638,6 +654,7 @@ function correlation() {
 
 
 function calcMAOD() {
+    
     // Sum of deficit values
     var sumO2deficits = 0;
     // Number of intervals in a minute
@@ -769,7 +786,10 @@ function percentileGraph() {
 
     // Draw line on top of axis
     var xAxisTop = d3.svg.axis().outerTickSize(0).scale(x).orient("top").ticks(0);
-    main.append("g").attr("class", "x axis").attr("transform", "translate(0, " + height).call(xAxisTop);
+    main.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0,0)")
+        .call(xAxisTop);
 
     
     var g = main.append("svg:g");
@@ -801,6 +821,8 @@ function percentileGraph() {
 }
 
 function calcPercentile(sex) {
+
+    
     var mean;
     var sd;
 
@@ -818,11 +840,11 @@ function calcPercentile(sex) {
     // If z is greater than 6.5 standard deviations from the mean
     // the number of significant digits will be outside of a reasonable 
     // range
-    if (z < -6.5) {
-        alert("MAOD outside of expected bounds. Verify input values.");
+    if (z < -3.5) {
+        alert("Unable to plot MAOD - check input values");
         return 0.0;
     } else if (z > 6.5) {
-        alert("MAOD outside of expected bounds. Verify input values.");
+        alert("Unable to plot MAOD - check input values");
         return 0.0;
     }
 
@@ -841,6 +863,8 @@ function calcPercentile(sex) {
 
     sum += 0.5;
     sum = sum * 100;
+    console.log(z);
+    console.log(sum);
+    
     return sum;
-
 }
