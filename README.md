@@ -8,6 +8,8 @@ The input takes up to a maximum of 12 points of data. The first list (X), takes 
 These values are then plotted onto a graph showing the correlation between the two data sets and linear regression.
 The formula is displayed ontop of the graph.
 
+(screen2.png)[hello]
+
 ## MAOD Screen 2
 This screen is where the MAOD is calculated. It takes in a time interval (seconds) for the user to select from. Once they have selected a time interval, the form is dynmically updated to conform to the required time interval (180 / timeinterval = input cells). If they select 5s intervals, the cells will update to only half of 180 (90s).
 
